@@ -44,6 +44,12 @@ namespace backend.Infrastructure.Configuration
                 .IsRequired(true)
                 .HasColumnName("BirthDate")
                 .HasColumnType("date");
+            builder
+                .Property(t => t.Login)
+                .IsRequired(true)
+                .HasColumnName("Login")
+                .HasColumnType("varchar")
+                .HasMaxLength(100);
         }
     }
 }

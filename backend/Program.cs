@@ -1,3 +1,5 @@
+using backend.Core.Interfaces;
+using backend.Core.Services;
 using backend.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
@@ -7,7 +9,8 @@ string? connection = builder.Configuration.GetConnectionString("Default");
 
 builder.Services.AddDbContext<ApplicationContext>(options =>
         options.UseSqlServer(connection));
-// Add services to the container.
+
+builder.Services.AddTransient<IProfileService, ProfileService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
