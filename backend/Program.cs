@@ -1,5 +1,12 @@
-var builder = WebApplication.CreateBuilder(args);
+using backend.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
+var builder = WebApplication.CreateBuilder(args);
+string? connection = builder.Configuration.GetConnectionString("Default");
+
+builder.Services.AddDbContext<ApplicationContext>(options =>
+        options.UseSqlServer(connection));
 // Add services to the container.
 
 builder.Services.AddControllers();
