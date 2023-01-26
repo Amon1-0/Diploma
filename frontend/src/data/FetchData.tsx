@@ -25,7 +25,6 @@ export const Login = async (loginData: ILoginRequest) => {
 }
 
 export const Register = async (registerData: IRegisterRequest) => {
-    console.log(registerData)
     try {
         const response = await fetch(`${BASE_URL}Profile/register`, {
             method: 'POST',
@@ -40,6 +39,23 @@ export const Register = async (registerData: IRegisterRequest) => {
                 avatar: registerData.avatar,
                 login: registerData.login
             })
+        });
+        return response;
+    }
+    catch (error: any) {
+        console.log(error);
+        return error;
+    }
+}
+
+export const GetTeam = async (token:string) => {
+    try {
+        const response = await fetch(`${BASE_URL}Team/team`, {
+            method: 'GET',
+            headers:{
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': `Bearer ${token}`
+            }
         });
         return response;
     }

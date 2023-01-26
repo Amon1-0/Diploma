@@ -351,3 +351,62 @@ nav a:hover {
   height: 100%;
   border-radius: 20px;
 }
+.loader-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  border-radius: 20px;
+  background: var(--background-third);
+  padding: 8rem 10rem;
+}
+.loader-image{
+  font-size: 5rem;
+  object-fit: contain;
+}
+
+.loader-text{
+  font-size: 5rem;
+  font-family: "Montserrat", sans-serif;
+  color: var(--text-primary);
+}
+
+.no-team-wrap{
+  width: 100% ;
+  height: calc(89vh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.no-team-content{
+  border-radius: 15px;
+  width: 700px;
+  height: 300px;
+  height: 300px;
+  background: var(--background);
+}
+
+.no-team-text{
+  text-align: center;
+  font-size: 34px;
+  font-family: "Montserrat", sans-serif;
+  color: var(--text-primary);
+  padding: 50px 20px;
+}
+.create-team-button{
+  margin: 50px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  padding: 30px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 30px;
+  background: #8D97F2;
+  cursor: pointer;
+}
+.create-team-button:hover{
+  background: #494949;
+  color: #e2e2e2;
+  transition: 0.7s ease;
+}
