@@ -14,6 +14,7 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
         options.UseSqlServer(connection));
 
 builder.Services.AddTransient<IProfileService, ProfileService>();
+builder.Services.AddTransient<ITeamService, TeamService>();
 
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";

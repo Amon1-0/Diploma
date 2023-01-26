@@ -1,8 +1,11 @@
 using backend.Core.Interfaces;
 using backend.Core.Models;
+using backend.Infrastructure.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PureConnectBackend.Core.Extentions;
 using System.Net;
+using System.Security.Claims;
 
 namespace backend.Controllers
 {
