@@ -25,6 +25,7 @@ export const Login = async (loginData: ILoginRequest) => {
 }
 
 export const Register = async (registerData: IRegisterRequest) => {
+    console.log(registerData)
     try {
         const response = await fetch(`${BASE_URL}Profile/register`, {
             method: 'POST',

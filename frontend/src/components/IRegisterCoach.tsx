@@ -1,8 +1,8 @@
-export interface IRegisterRequest{
-    login: string;
-    password: string;
+export interface IRegisterCoach{
     firstName: string;
     lastName: string;
     birthDate: string;
     avatar: string;
+    login: string;
+    password: string;
 }

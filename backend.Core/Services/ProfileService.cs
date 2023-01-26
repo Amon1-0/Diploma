@@ -34,14 +34,14 @@ namespace backend.Core.Services
             if (isEmailExists)
                 return HttpStatusCode.Conflict;
             Coach user = ConvertRegisterToCoach(profile);
-            await AddCoachToDb(user);
+            AddCoachToDb(user);
             return HttpStatusCode.Created;
         }
 
-        private async Task AddCoachToDb(Coach user)
+        private void AddCoachToDb(Coach user)
         {
-            await _context.Coaches.AddAsync(user);
-            await _context.SaveChangesAsync();
+             _context.Coaches.Add(user);
+             _context.SaveChanges();
         }
 
 

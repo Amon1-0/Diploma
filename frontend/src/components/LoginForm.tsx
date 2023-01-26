@@ -69,7 +69,7 @@ const LoginForm = () => {
                         Forgot password?
                     </Link>
                     <Link className='login-form-links' to={'register'}>
-                        Already have an account?
+                        Don`t have an account?
                     </Link>
                 </div>
 
@@ -78,10 +78,6 @@ const LoginForm = () => {
                         <button type={'submit'} disabled={login.length === 0 || password.length < 8} className={login.length > 0 && password.length >= 8 ? 'login-form-button active-button' : 'login-form-button'}>
                             Login
                         </button>
-                    </div>
-
-                    <div id="signInDiv">
-
                     </div>
                 </div>
             </form>

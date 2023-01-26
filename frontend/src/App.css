@@ -204,3 +204,104 @@ body{
   color: white;
   color: black;
 }
+
+/*Register page*/
+.register-wrapper{
+  background: var(--background);
+  min-height: 100vh;
+
+}
+.register-form-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 95vh;
+  max-height: 90vh;
+}
+.register-form{
+  position: relative;
+  background: var(--background-imagelogin);
+  border: 1px solid var(--text-primary);
+  padding: 3% 5% 1% 5%;
+  border: 1px solid var(--text-primary);
+  box-shadow: var(--box-shadow-main);
+  border-radius: 50px;
+  min-width: 65vw;
+}
+.register-header{
+  font-size: 1.7rem;
+  font-family: "Montserrat", sans-serif;
+  color: var(--text-primary);
+  margin: 0 0 5% 0;
+  font-weight: 600;
+  text-align: center;
+}
+.register-inputs-wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 18rem;
+}
+.register-input-additional{
+  max-width: 15vw;
+}
+.register-single-input-wrapper{
+  display: flex;
+  justify-content: center;
+}
+
+.register-form-avatar-image{
+  width: 15rem;
+  height: 15rem;
+  margin-bottom: 2rem;
+  object-fit: cover;
+}
+.register-form-grid-wrapper{
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 2fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  justify-content: space-between;
+  justify-items: center;
+}
+.register-avatar{
+  grid-area: 1/2/4;
+}
+.register-email-grid{
+  justify-self: left;
+  width: 100%;
+}
+.register-password-grid{
+  justify-self: right;
+  width: 100%;
+}
+.register-last-name-grid{
+  justify-self: left;
+  width: 100%;
+}
+.register-first-name-grid{
+  justify-self: right;
+  width: 100%;
+}
+.register-birth-date-grid{
+  justify-self: right;
+  width: 100%;
+}
+.register-location-grid{
+  justify-self: left;
+  width: 100%;
+}
+.register-username-grid{
+  grid-area: 4/2/4/2;
+}
+
+.button-already-have-acc{
+  display: flex;
+  justify-content: center;
+}
+.button-already-have-acc .link{
+  border: none;
+  background: none;
+  color: var(--text-primary);
+  text-decoration: underline;
+  cursor: pointer;
+}
