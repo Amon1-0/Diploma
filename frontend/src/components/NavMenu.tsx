@@ -8,7 +8,8 @@ const NavMenu = () => {
                 <img src={logo} alt="Logo"/>
             </div>
             <ul>
-                <li><Link to={'/home'}>Home</Link></li>
+                <li><Link to={'/home'}>Team</Link></li>
+                <li><Link to={'/players'}>Players</Link></li>
                 <li><Link to={'/profile'}>Profile</Link></li>
             </ul>
         </nav>
