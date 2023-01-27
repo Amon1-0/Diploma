@@ -327,18 +327,18 @@ nav li {
 
 nav a {
   display: block;
-  color: #666;
+  color: #1a1a1a;
   text-align: center;
   padding: 14px 36px;
   text-decoration: none;
   font-size: 30px;
-  border-radius: 20px;
 }
 
 nav a:hover {
-  background-color: #cbc9c9;
-  color: black;
+  background-color: var(--button-blue);
+  color: white;
   transition: 0.5s all ease;
+  border-radius: 20px;
 }
 .logo {
   padding: 10px;
@@ -408,5 +408,86 @@ nav a:hover {
 .create-team-button:hover{
   background: #494949;
   color: #e2e2e2;
+  transition: 0.7s ease;
+}
+.team-wrapper{
+  margin: 50px 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: var(--background);
+  border-radius: 50px;
+}
+.your-team{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  background: #8D97F2;
+  border-radius: 50px 50px 0 0;
+  width: 100%;
+  text-align: center;
+  font-size: 50px;
+  font-family: "Montserrat", sans-serif;
+  color: var(--text-primary);
+  margin-bottom: 50px;
+}
+.team-logo-wrapper{
+  width: 400px;
+  height: 400px;
+}
+.team-logo{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 20px;
+}
+
+.team-info-wrapper{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0 100px 0;
+}
+.team-name{
+  font-size: 44px;
+  font-weight: 900;
+  font-family: "Montserrat", sans-serif;
+  color: var(--text-primary);
+  margin: 0 50px 50px 50px;
+}
+.team-description{
+  font-size: 28px;
+  font-family: "Montserrat", sans-serif;
+  color: var(--text-primary);
+  margin: 0 50px;
+  width: 500px;
+}
+
+.flex-button{
+  margin: 5px 40px;
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+  cursor: pointer;
+}
+.flex-button>svg{
+  font-size: 30px;
+}
+.flex-button>div{
+  font-size: 25px;
+}
+.yellow{
+  color: yellow;
+}
+
+.red{
+  color: #b50303;
+}
+.yellow:hover, .red:hover{
+  transform: scale(1.1);
   transition: 0.7s ease;
 }

@@ -5,6 +5,8 @@ import {GetTeam} from "../data/FetchData";
 import {useNavigate} from "react-router-dom";
 import Loader from "./Loader";
 import NoTeam from "./NoTeam";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {solid} from "@fortawesome/fontawesome-svg-core/import.macro";
 
 const MainContent = () => {
 
@@ -46,17 +48,37 @@ const MainContent = () => {
                     <NoTeam/>
                     :
 
-            <div>
-                <div>
-                    <img src={team?.image} alt=""/>
+            <div className='team-wrapper'>
+                <div className='your-team'>
+                    <div className='flex-button yellow'>
+                        <FontAwesomeIcon icon={solid('edit')} size={'2x'}/>
+                        <div>Edit</div>
+                    </div>
+                    <div>
+                        Your Team
+                    </div>
+                    <div className='flex-button red'>
+                        <FontAwesomeIcon icon={solid('bucket')} size={'2x'}/>
+                        <div>Delete</div>
+                    </div>
                 </div>
 
-                <div>
-                    {team?.name}
-                </div>
+                <div className='team-info-wrapper'>
 
-                <div>
-                    {team?.description}
+                    <div className='team-logo-wrapper'>
+                        <img className='team-logo' src={team?.image} alt=""/>
+                    </div>
+
+                    <div>
+                        <div className='team-name'>
+                            {team?.name}
+                        </div>
+
+                        <div className='team-description'>
+                            {team?.description}
+                        </div>
+                    </div>
+
                 </div>
             </div>}
         </div>
