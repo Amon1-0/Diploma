@@ -5,6 +5,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Main from "./pages/Main";
 import NavMenu from "./components/NavMenu";
+import Players from "./pages/Players";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -13,6 +15,9 @@ function App() {
               <Route path="/" element={<Login/>}/>
               <Route path="/register" element={<Register/>}/>
               <Route path="/home" element={<Main/>}/>
+              <Route path="/players" element={<Players/>}/>
+              <Route path="/profile" element={<Profile/>}/>
+
           </Routes>
 
       </BrowserRouter>
