@@ -57,6 +57,17 @@ namespace backend.Controllers
             return NotFound();
         }
 
+        [Authorize]
+        [HttpPut]
+        public async Task<IActionResult> ChangeProfile(CoachPutRequest coachNewData)
+        {
+            var userFromJwt = GetCurrentUser();
+            var codeResult = await _profileService.ChangeProfile(coachNewData, userFromJwt.Id);
+            if (codeResult == HttpStatusCode.NotFound)
+                return NotFound();
+            return Ok("Profile is changed");
+        }
+
         /// <summary>
         /// Gets current user by authorizing jwt token.
         /// </summary>

@@ -55,7 +55,22 @@ namespace backend.Core.Services
             
             return profile;
         }
-        
+
+        public async Task<HttpStatusCode> ChangeProfile(CoachPutRequest coachNewData, int coachId)
+        {
+            var coach = await _context.Coaches.FirstOrDefaultAsync(x => x.Id == coachId);
+            if (coach == null)
+                return HttpStatusCode.NotFound;
+
+            coach.LastName = coachNewData.LastName;
+            coach.FirstName = coachNewData.FirstName;
+            coach.Avatar = coachNewData.Image;
+            coach.BirthDate = coachNewData.BirthDate;
+
+            _context.Coaches.Update(coach);
+            await _context.SaveChangesAsync();
+            return HttpStatusCode.OK;
+        }
         private void AddCoachToDb(Coach user)
         {
              _context.Coaches.Add(user);
