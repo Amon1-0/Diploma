@@ -6,7 +6,8 @@ import {solid} from "@fortawesome/fontawesome-svg-core/import.macro";
 
 const ProfileContent = (props: {
     coach: ICoach|undefined,
-    setCoach: React.Dispatch<SetStateAction<ICoach|undefined>>
+    setCoach: React.Dispatch<SetStateAction<ICoach|undefined>>,
+    setIsOpenEditProfileModal: React.Dispatch<SetStateAction<boolean>>,
 }) => {
     const [isValidAvatar, setIsValidAvatar] = React.useState(false);
 
@@ -49,7 +50,7 @@ const ProfileContent = (props: {
                         {props.coach && getDate(new Date(props.coach!.birthDate))}
                     </div>
                 </div>
-                <div style={{position:'absolute', fontSize:'40px', top:'15px', right:'15px'}}>
+                <div onClick={() => props.setIsOpenEditProfileModal(true)} className='edit-button' style={{position:'absolute', fontSize:'40px', top:'15px', right:'15px'}}>
                     <FontAwesomeIcon icon={solid('edit')}/>
                 </div>
             </div>

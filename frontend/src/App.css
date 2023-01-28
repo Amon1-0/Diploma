@@ -228,6 +228,12 @@ body{
   border-radius: 50px;
   min-width: 65vw;
 }
+.edit-profile-form{
+  position: relative;
+  background: var(--background-imagelogin);
+  padding: 3% 5% 1% 5%;
+  box-shadow: var(--box-shadow-main);
+}
 .register-header{
   font-size: 1.7rem;
   font-family: "Montserrat", sans-serif;
@@ -285,6 +291,8 @@ body{
 .register-birth-date-grid{
   justify-self: right;
   width: 100%;
+  grid-column-start: 2;
+  grid-row-start: 4;
 }
 .register-location-grid{
   justify-self: left;
@@ -656,4 +664,9 @@ nav a:hover {
   display: flex;
   gap: 30px;
   align-items: center;
+}
+.edit-button:hover{
+  cursor: pointer;
+  color: var(--button-yellow);
+  transition: 0.5s color ease;
 }

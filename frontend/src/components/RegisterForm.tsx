@@ -1,7 +1,7 @@
 import React, {ChangeEvent, FormEvent, useRef, useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import {toast, ToastContainer} from "react-toastify";
-import {IRegisterCoach} from "./IRegisterCoach";
+import {IRegisterCoach} from "../interfaces/IRegisterCoach";
 import login from "../pages/Login";
 import {Login, Register} from "../data/FetchData";
 import {IRegisterRequest} from "../interfaces/IRegisterRequest";
