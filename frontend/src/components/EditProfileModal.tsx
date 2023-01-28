@@ -5,6 +5,7 @@ import CreateTeamModalContent from "./CreateTeamModalContent";
 import EditProfileModalTopPanel from "./EditProfileModalTopPanel";
 import EditProfileModalContent from "./EditProfileModalContent";
 import {ITeam} from "../interfaces/ITeam";
+import {ToastContainer} from "react-toastify";
 
 const EditProfileModal = (props:{
     isOpenEditProfileModal: boolean,
@@ -23,9 +24,21 @@ const EditProfileModal = (props:{
     return (
         <div onClick={(e) => closeModal(e)} className={'modal-add-team-wrapper'}>
             <div onClick={(e) => e.stopPropagation()} className="modal-add-team-content-with-panel">
-                <EditProfileModalTopPanel setCoachEdit={setCoachEdit} coachEdit={coachEdit} isActiveEditProfileModal={props.isOpenEditProfileModal} setIsActiveEditProfileModal={props.setIsOpenEditProfileModal}/>
+                <EditProfileModalTopPanel toggleProfile={props.toggleProfile} setToggleProfile={props.setToggleProfile} setCoachEdit={setCoachEdit} coachEdit={coachEdit} isActiveEditProfileModal={props.isOpenEditProfileModal} setIsActiveEditProfileModal={props.setIsOpenEditProfileModal}/>
                 <EditProfileModalContent coachEdit={coachEdit} setCoachEdit={setCoachEdit} setProfile={props.setProfile} profile={props.profile}/>
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover
+                theme='dark'
+            />
         </div>
     );
 };
