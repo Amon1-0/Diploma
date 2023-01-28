@@ -8,10 +8,17 @@ import NoTeam from "./NoTeam";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {solid} from "@fortawesome/fontawesome-svg-core/import.macro";
 
-const MainContent = () => {
+const MainContent = (props:{
+    team: ITeam | undefined,
+    setTeam: React.Dispatch<React.SetStateAction<ITeam | undefined>>,
+    isAddTeamModalOpen: boolean,
+    setIsAddTeamModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
+    toggleTeamChange: boolean,
+    setToggleTeamChange: React.Dispatch<React.SetStateAction<boolean>>
+}) => {
 
     const nav = useNavigate();
-    const [team, setTeam] = React.useState<ITeam|undefined|null>(undefined);
+
     useEffect(() => {
         const getTeam = async () => {
             const token = localStorage.getItem('access_token');
@@ -23,13 +30,18 @@ const MainContent = () => {
                     nav('/')
                 }
                 if (response.status === 404) {
-                    const notify = () => toast.error("Team not found.");
-                    notify();
-                    setTeam(null);
+                    // const notify = () => toast.error("Team not found.");
+                    // notify();
+                    props.setTeam({
+                        name: '',
+                        description: '',
+                        id: -1,
+                        image: '',
+                    });
                     return
                 }
                 const data = await response.json();
-                setTeam(data);
+                props.setTeam(data);
             }
             else {
                 const notify = () => toast.error("Your session is expired. Please log in again.");
@@ -37,15 +49,15 @@ const MainContent = () => {
             }
         }
         getTeam();
-    }, [])
+    }, [props.toggleTeamChange])
 
     return (
         <div>
-            {team === undefined ?
+            {props.team === undefined ?
                     <Loader/>
                     :
-                team === null ?
-                    <NoTeam/>
+                props.team.id === -1 ?
+                    <NoTeam team={props.team} setTeam={props.setTeam} isAddTeamModalOpen={props.isAddTeamModalOpen} setIsAddTeamModalOpen={props.setIsAddTeamModalOpen}/>
                     :
 
             <div className='team-wrapper'>
@@ -66,16 +78,16 @@ const MainContent = () => {
                 <div className='team-info-wrapper'>
 
                     <div className='team-logo-wrapper'>
-                        <img className='team-logo' src={team?.image} alt=""/>
+                        <img className='team-logo' src={props.team?.image} alt=""/>
                     </div>
 
                     <div>
                         <div className='team-name'>
-                            {team?.name}
+                            {props.team?.name}
                         </div>
 
                         <div className='team-description'>
-                            {team?.description}
+                            {props.team?.description}
                         </div>
                     </div>
 

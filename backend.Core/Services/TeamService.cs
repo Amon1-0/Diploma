@@ -22,6 +22,12 @@ namespace backend.Core.Services
 
         public async Task<HttpStatusCode> CreateTeam(TeamRequest team, int coachId)
         {
+            var coach = await _context.Coaches.FirstOrDefaultAsync(x => x.Id == coachId);
+            _context.Entry(coach).Reference(x => x.Team).Load();
+            
+            if (coach.Team is not null)
+                return HttpStatusCode.Conflict;
+            
             Team teamResult = new Team
             {
                 Description = team.Description,

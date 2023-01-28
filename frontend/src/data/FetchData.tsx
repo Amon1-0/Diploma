@@ -1,5 +1,6 @@
 import {ILoginRequest} from "../interfaces/ILoginRequest";
 import {IRegisterRequest} from "../interfaces/IRegisterRequest";
+import {ITeam} from "../interfaces/ITeam";
 
 const BASE_URL = "https://localhost:7189/";
 
@@ -56,6 +57,28 @@ export const GetTeam = async (token:string) => {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': `Bearer ${token}`
             }
+        });
+        return response;
+    }
+    catch (error: any) {
+        console.log(error);
+        return error;
+    }
+}
+
+export const CreateTeam = async (teamData: ITeam, token:string) => {
+    try {
+        const response = await fetch(`${BASE_URL}Team/team`, {
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                name: teamData.name,
+                description: teamData.description,
+                image: teamData.image
+            })
         });
         return response;
     }
