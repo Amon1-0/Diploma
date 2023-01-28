@@ -2,6 +2,7 @@ import React, {ChangeEvent, useRef, useState} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {solid} from "@fortawesome/fontawesome-svg-core/import.macro";
 import {ITeam} from "../interfaces/ITeam";
+import {toast} from "react-toastify";
 
 const CreateTeamModalContent = (props:{
     team: ITeam | undefined ,
@@ -29,6 +30,11 @@ const CreateTeamModalContent = (props:{
             props.setTeam({...props.team!, image: event.target?.result as string});
         };
         reader.readAsDataURL(file);
+    }
+
+    const notifyHandleSymbolsLimit = () => {
+        const notify = () => toast.success("Description must be smaller than 200 symbols.");
+        notify();
     }
 
     return (
@@ -68,7 +74,13 @@ const CreateTeamModalContent = (props:{
                         value={props.team!.description}
                         cols={38}
                         rows={20}
-                        onChange={(e) => props.setTeam({...props.team!, description: e.target.value})}
+                        onChange={(e) => {
+                            if (e.target.value.length <= 200) {
+                                props.setTeam({...props.team!, description: e.target.value})}
+                            else
+                                notifyHandleSymbolsLimit()
+                        }
+                    }
                     >
                     </textarea>
                 </div>
