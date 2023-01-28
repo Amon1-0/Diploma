@@ -87,3 +87,20 @@ export const CreateTeam = async (teamData: ITeam, token:string) => {
         return error;
     }
 }
+
+export const GetProfile = async (token:string) => {
+    try {
+        const response = await fetch(`${BASE_URL}Profile`, {
+            method: 'GET',
+            headers:{
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return response;
+    }
+    catch (error: any) {
+        console.log(error);
+        return error;
+    }
+}
