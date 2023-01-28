@@ -7,9 +7,10 @@ import {ToastContainer} from "react-toastify";
 const EditProfileModalContent = (props:{
     profile: ICoach|undefined,
     setProfile: React.Dispatch<React.SetStateAction<ICoach|undefined>>,
+    coachEdit: ICoach|undefined,
+    setCoachEdit: React.Dispatch<React.SetStateAction<ICoach|undefined>>
 }) => {
 
-    const [coachEdit, setCoachEdit] = React.useState<ICoach|undefined>(props.profile)
 
     const nav = useNavigate();
     const fileInput = useRef<HTMLInputElement>(null);
@@ -24,13 +25,13 @@ const EditProfileModalContent = (props:{
 
             // Implement image to base64
             convertAvatarImageToBase64(reader, file);
-            console.log(coachEdit?.avatar)
+            console.log(props.coachEdit?.avatar)
         }
     };
 
     const convertAvatarImageToBase64 = (reader: FileReader, file: File) => {
         reader.onload = (event) => {
-            setCoachEdit({...coachEdit, avatar: event.target?.result as string} as ICoach);
+            props.setCoachEdit({...props.coachEdit, avatar: event.target?.result as string} as ICoach);
         };
         reader.readAsDataURL(file);
     }
@@ -47,23 +48,23 @@ const EditProfileModalContent = (props:{
                         className={'login-form-input register-input-additional register-last-name-grid'}
                         type="text"
                         placeholder={"Last name"}
-                        value={coachEdit?.lastName}
-                        onChange={(e) => setCoachEdit({...coachEdit, lastName: e.target.value} as ICoach)}
+                        value={props.coachEdit?.lastName}
+                        onChange={(e) => props.setCoachEdit({...props.coachEdit, lastName: e.target.value} as ICoach)}
                     />
                     <input
                         className={'login-form-input register-input-additional register-first-name-grid'}
                         type="text"
                         placeholder={"First name"}
-                        value={coachEdit?.firstName}
-                        onChange={(e) => setCoachEdit({...coachEdit, firstName: e.target.value} as ICoach)}
+                        value={props.coachEdit?.firstName}
+                        onChange={(e) => props.setCoachEdit({...props.coachEdit, firstName: e.target.value} as ICoach)}
                     />
 
 
                     <input
                         className={'login-form-input register-input-additional register-birth-date-grid'}
                         type="date"
-                        value={new Date(coachEdit?.birthDate!).toISOString().split('T')[0]}
-                        onChange={(e) => setCoachEdit({...coachEdit, birthDate: e.target.value} as ICoach)}
+                        value={new Date(props.coachEdit?.birthDate!).toISOString().split('T')[0]}
+                        onChange={(e) => props.setCoachEdit({...props.coachEdit, birthDate: e.target.value} as ICoach)}
                     />
 
                     <div className={"register-avatar"}>

@@ -1,6 +1,7 @@
 import {ILoginRequest} from "../interfaces/ILoginRequest";
 import {IRegisterRequest} from "../interfaces/IRegisterRequest";
 import {ITeam} from "../interfaces/ITeam";
+import {ICoach} from "../interfaces/ICoach";
 
 const BASE_URL = "https://localhost:7189/";
 
@@ -96,6 +97,29 @@ export const GetProfile = async (token:string) => {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': `Bearer ${token}`
             }
+        });
+        return response;
+    }
+    catch (error: any) {
+        console.log(error);
+        return error;
+    }
+}
+
+export const UpdateTeam = async (teamData: ICoach, token:string) => {
+    try {
+        const response = await fetch(`${BASE_URL}Profile`, {
+            method: 'PUT',
+            headers:{
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                firstName: teamData.firstName,
+                lastName: teamData.lastName,
+                image: teamData.avatar,
+                birthDate: teamData.birthDate
+            })
         });
         return response;
     }
