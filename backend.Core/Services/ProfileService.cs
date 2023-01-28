@@ -38,6 +38,24 @@ namespace backend.Core.Services
             return HttpStatusCode.Created;
         }
 
+        public async Task<ProfileResponse> GetProfile(int coachId)
+        {
+            var coach = await _context.Coaches.FirstOrDefaultAsync(x => x.Id == coachId);
+            if (coach == null)
+                return null;
+            
+            var profile = new ProfileResponse
+            {
+                Id = coach.Id,
+                LastName = coach.LastName,
+                FirstName = coach.FirstName,
+                Avatar = coach.Avatar,
+                BirthDate = coach.BirthDate
+            };
+            
+            return profile;
+        }
+        
         private void AddCoachToDb(Coach user)
         {
              _context.Coaches.Add(user);

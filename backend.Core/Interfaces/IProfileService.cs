@@ -13,5 +13,6 @@ namespace backend.Core.Interfaces
     {
         Task<Coach> Login(LoginRequest loginRequest);
         Task<HttpStatusCode> Register(CoachRegisterRequest profile);
+        Task<ProfileResponse> GetProfile(int coachId);
     }
 }

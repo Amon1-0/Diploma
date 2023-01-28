@@ -44,5 +44,40 @@ namespace backend.Controllers
 
             return Ok("Account is created");
         }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<ActionResult<ProfileResponse>> GetProfile()
+        {
+            var userFromJwt = GetCurrentUser();
+            var response = await _profileService.GetProfile(userFromJwt.Id);
+            if (response is not null)
+                return Ok(response);
+
+            return NotFound();
+        }
+
+        /// <summary>
+        /// Gets current user by authorizing jwt token.
+        /// </summary>
+        /// <returns></returns>
+        private Coach? GetCurrentUser()
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            if (identity is not null)
+            {
+                var userClaims = identity.Claims;
+
+                return new Coach
+                {
+                    Login = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.Email)?.Value,
+                    FirstName = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.GivenName)?.Value,
+                    LastName = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.Surname)?.Value,
+                    Id = Convert.ToInt32(userClaims.FirstOrDefault(o => o.Type == ClaimTypes.Sid)?.Value),
+                };
+            }
+            return null;
+        }
     }
 }
