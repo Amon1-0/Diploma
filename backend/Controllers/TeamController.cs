@@ -70,6 +70,66 @@ namespace backend.Controllers
 
             return Ok("Team is updated");
         }
+
+        [Authorize]
+        [HttpPost("player")]
+        public async Task<IActionResult> AddPlayerToTeam(PlayerAddRequest playerAdd)
+        {
+            var userFromJwt = GetCurrentUser();
+            var codeResult = await _teamService.AddPlayerToTeam(userFromJwt.Id, playerAdd);
+            if (codeResult == HttpStatusCode.NotFound)
+                return NotFound();
+
+            return Ok("Player is added");
+        }
+
+        [Authorize]
+        [HttpDelete("player")]
+        public async Task<IActionResult> DeletePlayerFromTeam(int playerId)
+        {
+            var userFromJwt = GetCurrentUser();
+            var codeResult = await _teamService.RemovePlayerFromTeam(userFromJwt.Id, playerId);
+            if (codeResult == HttpStatusCode.NotFound)
+                return NotFound();
+
+            return Ok("Player is deleted");
+        }
+
+        [Authorize]
+        [HttpPut("player")]
+        public async Task<IActionResult> UpdatePlayer(PlayerUpdateRequest playerUpdate)
+        {
+            var userFromJwt = GetCurrentUser();
+            var codeResult = await _teamService.UpdatePlayer(userFromJwt.Id, playerUpdate);
+            if (codeResult == HttpStatusCode.NotFound)
+                return NotFound();
+
+            return Ok("Player is updated");
+        }
+
+        [Authorize]
+        [HttpGet("players")]
+        public async Task<ActionResult<List<PlayerShortResponse>>> GetPlayers()
+        {
+            var userFromJwt = GetCurrentUser();
+            var response = await _teamService.GetPlayers(userFromJwt.Id);
+            if (response is not null)
+                return Ok(response);
+
+            return NotFound();
+        }
+
+        [Authorize]
+        [HttpGet("player")]
+        public async Task<ActionResult<PlayerResponse>> GetPlayer(int playerId)
+        {
+            var userFromJwt = GetCurrentUser();
+            var response = await _teamService.GetPlayer(userFromJwt.Id, playerId);
+            if (response is not null)
+                return Ok(response);
+
+            return NotFound();
+        }
         /// <summary>
         /// Gets current user by authorizing jwt token.
         /// </summary>
