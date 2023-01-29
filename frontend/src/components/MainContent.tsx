@@ -1,12 +1,14 @@
 import React, {useEffect} from 'react';
 import {toast} from "react-toastify";
 import {ITeam} from "../interfaces/ITeam";
-import {GetTeam} from "../data/FetchData";
+import {DeleteTeam, GetTeam} from "../data/FetchData";
 import {useNavigate} from "react-router-dom";
 import Loader from "./Loader";
 import NoTeam from "./NoTeam";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {solid} from "@fortawesome/fontawesome-svg-core/import.macro";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const MainContent = (props:{
     team: ITeam | undefined,
@@ -51,6 +53,45 @@ const MainContent = (props:{
         getTeam();
     }, [props.toggleTeamChange])
 
+    const handleDelete = async () => {
+        const token = localStorage.getItem('access_token');
+        if(token !== null) {
+            const response = await DeleteTeam(token)
+            if(response.status === 200){
+                const notify = () => toast.success("Team deleted successfully.");
+                notify();
+                props.setIsAddTeamModalOpen(false)
+                props.setToggleTeamChange!(!props.toggleTeamChange)
+            }
+            else{
+                if (response.status === 401) {
+                    setTimeout(() => nav('/'), 2000);
+                    const notify = () => toast.error("Your session is expired. Please log in again.");
+                    notify();
+                    return
+                }
+                const notify = () => toast.error("Something went wrong. Please try again.");
+                notify();
+            }
+        }
+    }
+    const handleDeleteTeam = () => {
+        console.log("delete team")
+        confirmAlert({
+            message: 'Are you sure you want to delete this team?',
+            title: 'Confirm To Delete',
+            buttons:[
+                {
+                    label: 'Yes',
+                    onClick: handleDelete
+
+                },
+                {
+                    label: 'No',
+                }
+            ]
+        })
+    }
     return (
         <div>
             {props.team === undefined ?
@@ -69,7 +110,7 @@ const MainContent = (props:{
                     <div>
                         Your Team
                     </div>
-                    <div className='flex-button red'>
+                    <div onClick={handleDeleteTeam} className='flex-button red'>
                         <FontAwesomeIcon icon={solid('bucket')} size={'2x'}/>
                         <div>Delete</div>
                     </div>

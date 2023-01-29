@@ -128,3 +128,20 @@ export const UpdateTeam = async (teamData: ICoach, token:string) => {
         return error;
     }
 }
+
+export const DeleteTeam = async (token:string) => {
+    try {
+        const response = await fetch(`${BASE_URL}Team/team`, {
+            method: 'DELETE',
+            headers:{
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return response;
+    }
+    catch (error: any) {
+        console.log(error);
+        return error;
+    }
+}
