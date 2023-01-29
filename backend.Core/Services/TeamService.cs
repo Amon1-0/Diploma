@@ -57,9 +57,41 @@ namespace backend.Core.Services
             return HttpStatusCode.OK;
         }
 
-        public Task<PlayerResponse?> GetPlayer(int coachId, int playerId)
+        public async Task<PlayerResponse?> GetPlayer(int coachId, int playerId)
         {
-            throw new NotImplementedException();
+            var team = await _context.Teams.FirstOrDefaultAsync(x => x.CoachId == coachId);
+            var isPlayerInTeam = await _context.Players.AnyAsync(x => x.Id == playerId && x.TeamId == team.Id);
+
+            if (team == null || !isPlayerInTeam)
+                return null;
+            
+            var player = await _context.Players
+                .FirstOrDefaultAsync(x => x.Id == playerId && x.Team.CoachId == coachId);
+            
+            if (player == null)
+                return null;
+            
+            _context.Entry(player).Collection(x => x.Trainings).Load();
+
+            return new PlayerResponse
+            {
+                Id = player.Id,
+                LastName = player.LastName,
+                FirstName = player.FirstName,
+                Position = player.Position,
+                IsInjured = player.IsInjured,
+                Avatar = player.Avatar,
+                PartOfField = ConvertPositionToPartOfField(player.Position),
+                Trainings = player.Trainings.Select(x => new TrainingData
+                {
+                    Id = x.Id,
+                    TrainingDate = x.TrainingDate,
+                    Description = x.Description,
+                    Grade = x.Grade,
+                    IsPlayerAbsent = x.IsPlayerAbsent
+                }).ToList()
+            };
+
         }
 
         public async Task<List<PlayerShortResponse>?> GetPlayers(int coachId)
@@ -93,7 +125,7 @@ namespace backend.Core.Services
                 return FieldPart.Defender;
             else if (position == "CM" || position == "CDM" || position == "LM" || position == "RM" || position == "CAM")
                 return FieldPart.Midfielder;
-            else (position == "ST" || position == "CF" || position == "LW" || position == "RW")
+            else
                 return FieldPart.Forward;        
         }
 
