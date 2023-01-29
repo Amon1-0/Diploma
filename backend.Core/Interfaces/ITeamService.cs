@@ -18,7 +18,7 @@ namespace backend.Core.Interfaces
         Task<HttpStatusCode> AddPlayerToTeam(int coachId, PlayerAddRequest playerAdd);
         Task<HttpStatusCode> RemovePlayerFromTeam(int coachId, int playerId);
         Task<HttpStatusCode> UpdatePlayer(int coachId, PlayerUpdateRequest playerUpdate);
-        Task<List<PlayerShortResponse>> GetPlayers(int coachId);
+        Task<List<PlayerShortResponse>?> GetPlayers(int coachId);
         Task<PlayerResponse?> GetPlayer(int coachId, int playerId);
     }
 }
