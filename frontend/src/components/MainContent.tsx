@@ -7,8 +7,9 @@ import Loader from "./Loader";
 import NoTeam from "./NoTeam";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {solid} from "@fortawesome/fontawesome-svg-core/import.macro";
-import { confirmAlert } from 'react-confirm-alert';
+import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import {PageEnum} from "../interfaces/PageEnum";
 
 const MainContent = (props:{
     team: ITeam | undefined,
@@ -99,7 +100,7 @@ const MainContent = (props:{
                     <Loader/>
                     :
                 props.team.id === -1 ?
-                    <NoTeam team={props.team} setTeam={props.setTeam} isAddTeamModalOpen={props.isAddTeamModalOpen} setIsAddTeamModalOpen={props.setIsAddTeamModalOpen}/>
+                    <NoTeam page={PageEnum.Team} team={props.team} setTeam={props.setTeam} isAddTeamModalOpen={props.isAddTeamModalOpen} setIsAddTeamModalOpen={props.setIsAddTeamModalOpen}/>
                     :
 
             <div className='team-wrapper'>
