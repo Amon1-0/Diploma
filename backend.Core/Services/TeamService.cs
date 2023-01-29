@@ -20,9 +20,27 @@ namespace backend.Core.Services
             _context = context;
         }
 
-        public Task<HttpStatusCode> AddPlayerToTeam(int coachId, PlayerAddRequest playerAdd)
+        public async Task<HttpStatusCode> AddPlayerToTeam(int coachId, PlayerAddRequest playerAdd)
         {
-            throw new NotImplementedException();
+            var coach = await _context.Coaches.Include(c => c.Team).FirstOrDefaultAsync(c => c.Id == coachId);
+
+            if (coach == null)
+                return HttpStatusCode.NotFound;
+
+            var player = new Player
+            {
+                FirstName = playerAdd.FirstName,
+                LastName = playerAdd.LastName,
+                Position = playerAdd.Position,
+                IsInjured = playerAdd.IsInjured,
+                Avatar = playerAdd.Avatar,
+                Team = coach.Team,
+                TeamId = coach.Team.Id,
+            };
+
+            await _context.Players.AddAsync(player);
+            await _context.SaveChangesAsync();
+            return HttpStatusCode.OK;
         }
 
         public async Task<HttpStatusCode> CreateTeam(TeamRequest team, int coachId)
