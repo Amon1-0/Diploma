@@ -13,6 +13,7 @@ namespace backend.Infrastructure.Models
         public DateTime TrainingDate { get; set; }
         public bool IsPlayerAbsent { get; set; }
         public string Description { get; set; }
+        public double Grade { get; set; }
         public int PlayerId { get; set; }
         public Player Player { get; set; }
     }

@@ -20,6 +20,11 @@ namespace backend.Core.Services
             _context = context;
         }
 
+        public Task<HttpStatusCode> AddPlayerToTeam(int coachId, PlayerAddRequest playerAdd)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<HttpStatusCode> CreateTeam(TeamRequest team, int coachId)
         {
             var coach = await _context.Coaches.FirstOrDefaultAsync(x => x.Id == coachId);
@@ -52,6 +57,16 @@ namespace backend.Core.Services
             return HttpStatusCode.OK;
         }
 
+        public Task<PlayerResponse?> GetPlayer(int coachId, int playerId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<PlayerShortResponse>> GetPlayers(int coachId)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<TeamResponse?> GetTeam(int coachId)
         {
             var team = await _context.Teams.FirstOrDefaultAsync(x => x.CoachId == coachId);
@@ -64,6 +79,16 @@ namespace backend.Core.Services
                 Image = team.Image,
                 Name = team.Name 
             };
+        }
+
+        public Task<HttpStatusCode> RemovePlayerFromTeam(int coachId, int playerId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<HttpStatusCode> UpdatePlayer(int coachId, PlayerUpdateRequest playerUpdate)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<HttpStatusCode> UpdateTeam(TeamUpdateRequest teamUpdate, int coachId)

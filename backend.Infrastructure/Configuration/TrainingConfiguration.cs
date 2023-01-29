@@ -37,6 +37,11 @@ namespace backend.Infrastructure.Configuration
                 .IsRequired()
                 .HasColumnName("Description")
                 .HasColumnType("varchar(500)");
+            builder
+                .Property(t => t.Grade)
+                .IsRequired()
+                .HasColumnName("Grade")
+                .HasColumnType("float");
         }
     }
 }
