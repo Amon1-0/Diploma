@@ -59,6 +59,17 @@ namespace backend.Controllers
             return Ok("Team is deleted");
         }
 
+        [Authorize]
+        [HttpPut("team")]
+        public async Task<IActionResult> UpdateTeam(TeamUpdateRequest teamUpdate)
+        {
+            var userFromJwt = GetCurrentUser();
+            var codeResult = await _teamService.UpdateTeam(teamUpdate, userFromJwt.Id);
+            if (codeResult == HttpStatusCode.NotFound)
+                return NotFound();
+
+            return Ok("Team is updated");
+        }
         /// <summary>
         /// Gets current user by authorizing jwt token.
         /// </summary>

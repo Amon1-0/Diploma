@@ -68,6 +68,8 @@ namespace backend.Controllers
             return Ok("Profile is changed");
         }
 
+
+
         /// <summary>
         /// Gets current user by authorizing jwt token.
         /// </summary>

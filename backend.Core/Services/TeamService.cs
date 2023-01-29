@@ -65,5 +65,20 @@ namespace backend.Core.Services
                 Name = team.Name 
             };
         }
+
+        public async Task<HttpStatusCode> UpdateTeam(TeamUpdateRequest teamUpdate, int coachId)
+        {
+            var team = await _context.Teams.FirstOrDefaultAsync(x => x.CoachId == coachId);
+            if (team == null)
+                return HttpStatusCode.NotFound;
+
+            team.Description = teamUpdate.Description;
+            team.Image = teamUpdate.Image;
+            team.Name = teamUpdate.Name;
+
+            _context.Teams.Update(team);
+            await _context.SaveChangesAsync();
+            return HttpStatusCode.OK;
+        }
     }
 }
