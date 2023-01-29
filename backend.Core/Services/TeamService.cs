@@ -161,14 +161,32 @@ namespace backend.Core.Services
             };
         }
 
-        public Task<HttpStatusCode> RemovePlayerFromTeam(int coachId, int playerId)
+        public async Task<HttpStatusCode> RemovePlayerFromTeam(int coachId, int playerId)
         {
-            throw new NotImplementedException();
+            var player = await _context.Players.FirstOrDefaultAsync(x => x.Id == playerId && x.Team.CoachId == coachId);
+            if (player == null)
+                return HttpStatusCode.NotFound;
+
+            _context.Players.Remove(player);
+            await _context.SaveChangesAsync();
+            return HttpStatusCode.OK;
         }
 
-        public Task<HttpStatusCode> UpdatePlayer(int coachId, PlayerUpdateRequest playerUpdate)
+        public async Task<HttpStatusCode> UpdatePlayer(int coachId, PlayerUpdateRequest playerUpdate)
         {
-            throw new NotImplementedException();
+            var player = await _context.Players.FirstOrDefaultAsync(x => x.Id == playerUpdate.Id && x.Team.CoachId == coachId);
+            if (player == null)
+                return HttpStatusCode.NotFound;
+
+            player.FirstName = playerUpdate.FirstName;
+            player.LastName = playerUpdate.LastName;
+            player.Position = playerUpdate.Position;
+            player.IsInjured = playerUpdate.IsInjured;
+            player.Avatar = playerUpdate.Avatar;
+            player.BirthDate = playerUpdate.BirthDate;
+
+            await _context.SaveChangesAsync();
+            return HttpStatusCode.OK;
         }
 
         public async Task<HttpStatusCode> UpdateTeam(TeamUpdateRequest teamUpdate, int coachId)
