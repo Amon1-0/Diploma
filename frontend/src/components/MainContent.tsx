@@ -16,7 +16,9 @@ const MainContent = (props:{
     isAddTeamModalOpen: boolean,
     setIsAddTeamModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
     toggleTeamChange: boolean,
-    setToggleTeamChange: React.Dispatch<React.SetStateAction<boolean>>
+    setToggleTeamChange: React.Dispatch<React.SetStateAction<boolean>>,
+    isEditModalOpen: boolean,
+    setIsEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
 }) => {
 
     const nav = useNavigate();
@@ -76,7 +78,6 @@ const MainContent = (props:{
         }
     }
     const handleDeleteTeam = () => {
-        console.log("delete team")
         confirmAlert({
             message: 'Are you sure you want to delete this team?',
             title: 'Confirm To Delete',
@@ -103,7 +104,7 @@ const MainContent = (props:{
 
             <div className='team-wrapper'>
                 <div className='your-team'>
-                    <div className='flex-button yellow'>
+                    <div onClick={() => props.setIsEditModalOpen(true)} className='flex-button yellow'>
                         <FontAwesomeIcon icon={solid('edit')} size={'2x'}/>
                         <div>Edit</div>
                     </div>

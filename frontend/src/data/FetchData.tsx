@@ -106,7 +106,7 @@ export const GetProfile = async (token:string) => {
     }
 }
 
-export const UpdateTeam = async (teamData: ICoach, token:string) => {
+export const UpdateCoach = async (teamData: ICoach, token:string) => {
     try {
         const response = await fetch(`${BASE_URL}Profile`, {
             method: 'PUT',
@@ -137,6 +137,28 @@ export const DeleteTeam = async (token:string) => {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
+        });
+        return response;
+    }
+    catch (error: any) {
+        console.log(error);
+        return error;
+    }
+}
+
+export const UpdateTeam = async (teamData: ITeam, token:string) => {
+    try {
+        const response = await fetch(`${BASE_URL}Team/team`, {
+            method: 'PUT',
+            headers:{
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                name: teamData.name,
+                description: teamData.description,
+                image: teamData.image
+            })
         });
         return response;
     }

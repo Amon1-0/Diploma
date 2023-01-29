@@ -1,5 +1,5 @@
 import React from 'react';
-import {UpdateTeam} from "../data/FetchData";
+import {UpdateCoach} from "../data/FetchData";
 import {ITeam} from "../interfaces/ITeam";
 import {ICoach} from "../interfaces/ICoach";
 import {toast, ToastContainer} from "react-toastify";
@@ -22,7 +22,7 @@ const EditProfileModalTopPanel = (props: {
         const token = localStorage.getItem('access_token')
         console.log(props.coachEdit)
         if (token) {
-             const res = await UpdateTeam(props.coachEdit!, token)
+             const res = await UpdateCoach(props.coachEdit!, token)
                 if (res.status === 200) {
                     console.log('here')
                     const notify = () => toast.success("Profile updated successfully")
