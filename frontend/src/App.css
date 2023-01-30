@@ -670,3 +670,45 @@ nav a:hover {
   color: var(--button-yellow);
   transition: 0.5s color ease;
 }
+
+
+.no-players-wrapper{
+  margin-top: 20px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 300px;
+  border-radius: 20px;
+}
+.no-players-text{
+  color: var(--text-primary);
+  font-family: "Montserrat", sans-serif;
+  font-size: 28px;
+  font-weight: 100;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+.add-player-button{
+  margin-top: 20px;
+  width: 200px;
+  height: 50px;
+  border-radius: 20px;
+  background: #080000;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add-player-button:hover{
+  cursor: pointer;
+  background: #e2e1e1;
+  color: #080000;
+  border: 1px solid #080000;
+  transition: 0.5s background-color ease;
+}
