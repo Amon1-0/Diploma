@@ -16,6 +16,6 @@ namespace backend.Core.Models
         public string Avatar { get; set; }
 
         public FieldPart PartOfField { get; set; }
-        public double TwoWeeksForm { get; set; }
+        public double? TwoWeeksForm { get; set; }
     }
 }

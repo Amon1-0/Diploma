@@ -114,12 +114,10 @@ namespace backend.Core.Services
 
         public async Task<List<PlayerShortResponse>?> GetPlayers(int coachId)
         {
-            var team = await _context.Teams.FirstOrDefaultAsync(x => x.CoachId == coachId);
+            var team = await _context.Teams.Include(x => x.Players).ThenInclude(x => x.Trainings).FirstOrDefaultAsync(x => x.CoachId == coachId);
             if (team == null)
                 return null;
            
-            _context.Entry(team).Collection(x => x.Players).Load();
-            
             var players = team.Players.Select(x => new PlayerShortResponse
             {
                 Id = x.Id,
@@ -129,7 +127,7 @@ namespace backend.Core.Services
                 IsInjured = x.IsInjured,
                 Avatar = x.Avatar,
                 PartOfField = ConvertPositionToPartOfField(x.Position),
-                TwoWeeksForm = x.Trainings.Where(x => x.TrainingDate > DateTime.Now.AddDays(-14)).Average(x => x.Grade)
+                TwoWeeksForm = x.Trainings.Count == 0 ? null : x.Trainings.Where(x => x.TrainingDate > DateTime.Now.AddDays(-14)).Average(x => x.Grade)
             }).ToList();
 
             return players;
