@@ -6,5 +6,5 @@ export interface IPlayerShort{
     position: string,
     isInjured: boolean,
     partOfField: string,
-    twoWeeksForm: number,
+    twoWeeksForm: number|null,
 }
