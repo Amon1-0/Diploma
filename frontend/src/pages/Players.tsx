@@ -5,15 +5,18 @@ import NoTeam from "../components/NoTeam";
 import {ITeam} from "../interfaces/ITeam";
 import PlayersContent from "../components/PlayersContent";
 import {ToastContainer} from "react-toastify";
+import {IPlayerShort} from "../interfaces/IPlayerShort";
 
 const Players = () => {
 
     const [team, setTeam] = React.useState<ITeam|undefined>(undefined);
     const [isAddTeamModalOpen, setIsAddTeamModalOpen] = React.useState(false);
+    const [players, setPlayers] = React.useState<IPlayerShort[]>([]);
+
     return (
         <div>
             <NavMenu/>
-            <PlayersContent team={team} setTeam={setTeam} isAddTeamModalOpen={isAddTeamModalOpen} setIsAddTeamModalOpen={setIsAddTeamModalOpen}/>
+            <PlayersContent setPlayers={setPlayers} players={players} team={team} setTeam={setTeam} isAddTeamModalOpen={isAddTeamModalOpen} setIsAddTeamModalOpen={setIsAddTeamModalOpen}/>
             <ToastContainer
                 className={`toast-container`}
                 position="top-right"

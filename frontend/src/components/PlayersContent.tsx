@@ -6,12 +6,18 @@ import {toast} from "react-toastify";
 import {GetTeam} from "../data/FetchData";
 import {useNavigate} from "react-router-dom";
 import {PageEnum} from "../interfaces/PageEnum";
+import players from "../pages/Players";
+import {IPlayerShort} from "../interfaces/IPlayerShort";
+import PlayerShortCard from "./PlayerShortCard";
+import NoPlayers from "./NoPlayers";
 
 const PlayersContent = (props:{
     team: ITeam | undefined,
     setTeam: React.Dispatch<React.SetStateAction<ITeam | undefined>>,
     isAddTeamModalOpen: boolean,
-    setIsAddTeamModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+    setIsAddTeamModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
+    players: IPlayerShort[],
+    setPlayers: React.Dispatch<React.SetStateAction<IPlayerShort[]>>,
 }) => {
 
     const nav = useNavigate();
@@ -56,7 +62,16 @@ const PlayersContent = (props:{
                 <NoTeam page={PageEnum.Players} team={props.team} setTeam={props.setTeam} isAddTeamModalOpen={props.isAddTeamModalOpen} setIsAddTeamModalOpen={props.setIsAddTeamModalOpen}/>
                     :
                 <div>
-                    <h1>Players</h1>
+                    {props.players.length === 0 ? <NoPlayers/> :
+                        <div>
+                            {props.players.map((player, index) => {
+                                return (
+                                    <PlayerShortCard key={index}/>
+                                )
+                            })}
+                        </div>
+                    }
+
                 </div>
             }
         </div>
