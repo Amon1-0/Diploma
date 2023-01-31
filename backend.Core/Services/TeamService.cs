@@ -128,10 +128,23 @@ namespace backend.Core.Services
                 IsInjured = x.IsInjured,
                 Avatar = x.Avatar,
                 PartOfField = ConvertPositionToPartOfField(x.Position),
-                TwoWeeksForm = x.Trainings.Count == 0 ? null : x.Trainings.Where(x => x.TrainingDate > DateTime.Now.AddDays(-14)).Average(x => x.Grade)
+                TwoWeeksForm = GetTwoWeeksForm(x.Trainings)
             }).ToList();
 
             return players;
+        }
+
+        private double? GetTwoWeeksForm(List<Training> trainings)
+        {
+            if (trainings.Count == 0)
+                return null;
+            
+            var trainingsTwoWeeks = trainings.Where(x => x.TrainingDate > DateTime.Now.AddDays(-14)).ToList();
+
+            if (trainingsTwoWeeks.Count == 0)
+                return null;
+
+            return trainingsTwoWeeks.Average(x => x.Grade);
         }
 
         private FieldPart ConvertPositionToPartOfField(string position)
