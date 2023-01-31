@@ -909,3 +909,9 @@ nav a:hover {
   color: #f3f3f3;
   transition: 0.5s all ease;
 }
+.player-wrapper:hover{
+  cursor: pointer;
+  background: #bebebe;
+  color: #080000;
+  transition: 0.5s all ease;
+}
