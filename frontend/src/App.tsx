@@ -7,6 +7,7 @@ import Main from "./pages/Main";
 import NavMenu from "./components/NavMenu";
 import Players from "./pages/Players";
 import Profile from "./pages/Profile";
+import Player from "./pages/Player";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
               <Route path="/home" element={<Main/>}/>
               <Route path="/players" element={<Players/>}/>
               <Route path="/profile" element={<Profile/>}/>
+              <Route path="/player/:id" element={<Player/>}/>
 
           </Routes>
 

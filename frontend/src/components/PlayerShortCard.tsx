@@ -76,7 +76,7 @@ const PlayerShortCard = (props:{
     }
 
     return (
-        <div className={`player-wrapper ${props.player.isInjured ? 'player-injured' : 'player-ok'}`}>
+        <div onClick={() => nav(`/player/${props.player.id}`)} className={`player-wrapper ${props.player.isInjured ? 'player-injured' : 'player-ok'}`}>
             <div className='player-name-image-wrapper'>
                 <div className='player-image-wrapper'>
                     <img className='player-image' src={props.player.avatar} alt=""/>
@@ -100,7 +100,10 @@ const PlayerShortCard = (props:{
                 <div className={`player-grade ${getGradeStyle(props.player.twoWeeksForm)}`}>
                     {props.player.twoWeeksForm ? props.player.twoWeeksForm : 'N/A'}
                 </div>
-                <div onClick={(e) => handleRecoverOrInjury(e)} className={`${props.player.isInjured? 'player-recover' : 'player-injury'}`}>
+                <div onClick={(e) => {
+                    e.stopPropagation()
+                    handleRecoverOrInjury(e)
+                }} className={`${props.player.isInjured? 'player-recover' : 'player-injury'}`}>
                     {props.player.isInjured ?
                         <FontAwesomeIcon icon={solid('briefcase-medical')}/>
                         :
