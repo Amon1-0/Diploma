@@ -25,7 +25,6 @@ const EditProfileModalContent = (props:{
 
             // Implement image to base64
             convertAvatarImageToBase64(reader, file);
-            console.log(props.coachEdit?.avatar)
         }
     };
 
