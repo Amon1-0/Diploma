@@ -872,7 +872,7 @@ nav a:hover {
   align-items: center;
   position: absolute;
   top: -50px;
-  right: 1100px;
+  left: -50px;
   padding: 30px;
   border-radius: 50%;
   border: 1px solid #080000;
@@ -888,7 +888,7 @@ nav a:hover {
   align-items: center;
   position: absolute;
   top: -50px;
-  right: 1100px;
+  left: -50px;
   padding: 30px;
   border-radius: 50%;
   border: 1px solid #080000;
@@ -914,4 +914,7 @@ nav a:hover {
   background: #bebebe;
   color: #080000;
   transition: 0.5s all ease;
+}
+body::-webkit-scrollbar {
+  display: none;
 }

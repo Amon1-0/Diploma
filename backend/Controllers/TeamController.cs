@@ -120,8 +120,8 @@ namespace backend.Controllers
         }
 
         [Authorize]
-        [HttpGet("player")]
-        public async Task<ActionResult<PlayerResponse>> GetPlayer(int playerId)
+        [HttpGet("player/{id}")]
+        public async Task<ActionResult<PlayerResponse>> GetPlayer([FromQuery]int playerId)
         {
             var userFromJwt = GetCurrentUser();
             var response = await _teamService.GetPlayer(userFromJwt.Id, playerId);

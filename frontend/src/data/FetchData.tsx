@@ -236,3 +236,20 @@ export const UpdatePlayer = async (token:string, player: IPlayerShort) => {
         return error;
     }
 }
+
+export const GetPlayer = async (token:string, id: number) => {
+    try {
+        const response = await fetch(`${BASE_URL}Team/player/${id}`, {
+            method: 'GET',
+            headers:{
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return response;
+    }
+    catch (error: any) {
+        console.log(error);
+        return error;
+    }
+}
