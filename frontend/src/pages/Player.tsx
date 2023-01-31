@@ -4,6 +4,8 @@ import {IPlayer} from "../interfaces/IPlayer";
 import {toast, ToastContainer} from "react-toastify";
 import {useNavigate} from "react-router-dom";
 import {GetPlayer} from "../data/FetchData";
+import PlayerContent from "../components/PlayerContent";
+import NavMenu from "../components/NavMenu";
 
 const Player = () => {
 
@@ -39,7 +41,8 @@ const Player = () => {
 
     return (
         <div>
-            Player {id}
+            <NavMenu/>
+            <PlayerContent player={player}/>
             <ToastContainer
                 position="top-right"
                 autoClose={2000}

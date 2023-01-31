@@ -918,3 +918,56 @@ nav a:hover {
 body::-webkit-scrollbar {
   display: none;
 }
+.player-page-wrapper{
+  position: relative;
+  display: flex;
+  gap: 100px;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-primary);
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: 100;
+  margin: 50px 100px;
+  padding: 50px 70px;
+  border-radius: 20px;
+  background: #abf3ab;
+}
+.player-page-img-wrapper{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.player-page-img{
+  width: 400px;
+  height: 400px;
+  object-fit: contain;
+}
+
+.player-page-img-position{
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+.player-edit{
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  padding: 30px;
+  border-radius: 50%;
+  border: 1px solid #080000;
+  font-size: 28px;
+  background: rgba(252, 158, 6, 1);
+  color: white;
+}
+.player-edit:hover{
+  cursor: pointer;
+  background: rgb(244, 195, 116);
+  color: #080000;
+  transition: 0.5s all ease;
+}

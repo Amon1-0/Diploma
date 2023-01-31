@@ -100,6 +100,7 @@ namespace backend.Core.Services
                 IsInjured = player.IsInjured,
                 Avatar = player.Avatar,
                 PartOfField = ConvertPositionToPartOfField(player.Position),
+                BirthDate = player.BirthDate,
                 Trainings = player.Trainings.Select(x => new TrainingData
                 {
                     Id = x.Id,
