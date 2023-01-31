@@ -2,6 +2,7 @@ import React, {ChangeEvent, useRef, useState} from 'react';
 import {toast} from "react-toastify";
 import {IPlayerShort} from "../interfaces/IPlayerShort";
 import {IPlayerAdd} from "../interfaces/IPlayerAdd";
+import {IRegisterCoach} from "../interfaces/IRegisterCoach";
 
 const AddPlayerModalContent = (props:{
     player: IPlayerAdd|undefined,
@@ -31,10 +32,6 @@ const AddPlayerModalContent = (props:{
         reader.readAsDataURL(file);
     }
 
-    const notifyHandleSymbolsLimit = () => {
-        const notify = () => toast.success("Description must be smaller than 200 symbols.");
-        notify();
-    }
 
     return (
         <div className={'modal-add-team-content'}>
@@ -78,10 +75,10 @@ const AddPlayerModalContent = (props:{
                 </div>
                 <div>
                     <input
+                        className={'input-add-team-name'}
+                        type="date"
                         value={props.player?.birthDate}
                         onChange={(e) => props.setPlayer({...props.player!, birthDate: e.target.value})}
-                        type="date"
-                        className={'input-add-team-name'}
                     />
                 </div>
                 <div className={'modal-add-team-desc-text'}>

@@ -191,7 +191,7 @@ export const AddPlayer = async (token:string, player:IPlayerAdd) => {
         const response = await fetch(`${BASE_URL}Team/player`, {
             method: 'POST',
             headers:{
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({
@@ -199,7 +199,8 @@ export const AddPlayer = async (token:string, player:IPlayerAdd) => {
                 lastName: player.lastName,
                 birthDate: player.birthDate,
                 avatar: player.avatar,
-                position: player.position
+                position: player.position,
+                isInjured: player.isInjured
             })
         });
         return response;
