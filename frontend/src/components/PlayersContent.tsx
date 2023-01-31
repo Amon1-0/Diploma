@@ -119,7 +119,7 @@ const PlayersContent = (props:{
                             </div>
                             {props.players.map((player, index) => {
                                 return (
-                                    <PlayerShortCard player={player} key={index}/>
+                                    <PlayerShortCard togglePlayers={props.togglePlayers} setTogglePlayers={props.setTogglePlayers} player={player} key={index}/>
                                 )
                             })}
                         </div> :
@@ -136,7 +136,7 @@ const PlayersContent = (props:{
                                 </div>
                                 {props.players.filter(player => player.partOfField === PartOfFieldEnum.Goalkeeper).map((player, index) => {
                                     return (
-                                        <PlayerShortCard player={player} key={index}/>
+                                        <PlayerShortCard togglePlayers={props.togglePlayers} setTogglePlayers={props.setTogglePlayers}  player={player} key={index}/>
                                     )
                                 })}
                                 <div className='players-text'>
@@ -144,7 +144,7 @@ const PlayersContent = (props:{
                                 </div>
                                 {props.players.filter(player => player.partOfField === PartOfFieldEnum.Defender).map((player, index) => {
                                     return (
-                                        <PlayerShortCard player={player} key={index}/>
+                                        <PlayerShortCard togglePlayers={props.togglePlayers} setTogglePlayers={props.setTogglePlayers}  player={player} key={index}/>
                                     )
                                 })}
                                 <div className='players-text'>
@@ -152,7 +152,7 @@ const PlayersContent = (props:{
                                 </div>
                                 {props.players.filter(player => player.partOfField === PartOfFieldEnum.Midfielder).map((player, index) => {
                                     return (
-                                        <PlayerShortCard player={player} key={index}/>
+                                        <PlayerShortCard togglePlayers={props.togglePlayers} setTogglePlayers={props.setTogglePlayers}  player={player} key={index}/>
                                     )
                                 })}
                                 <div className='players-text'>
@@ -160,7 +160,7 @@ const PlayersContent = (props:{
                                 </div>
                                 {props.players.filter(player => player.partOfField === PartOfFieldEnum.Forward).map((player, index) => {
                                     return (
-                                        <PlayerShortCard player={player} key={index}/>
+                                        <PlayerShortCard togglePlayers={props.togglePlayers} setTogglePlayers={props.setTogglePlayers}  player={player} key={index}/>
                                     )
                                 })}
                             </div>

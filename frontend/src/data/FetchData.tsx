@@ -3,6 +3,7 @@ import {IRegisterRequest} from "../interfaces/IRegisterRequest";
 import {ITeam} from "../interfaces/ITeam";
 import {ICoach} from "../interfaces/ICoach";
 import {IPlayerAdd} from "../interfaces/IPlayerAdd";
+import {IPlayerShort} from "../interfaces/IPlayerShort";
 
 const BASE_URL = "https://localhost:7189/";
 
@@ -201,6 +202,31 @@ export const AddPlayer = async (token:string, player:IPlayerAdd) => {
                 avatar: player.avatar,
                 position: player.position,
                 isInjured: player.isInjured
+            })
+        });
+        return response;
+    }
+    catch (error: any) {
+        console.log(error);
+        return error;
+    }
+}
+
+export const UpdatePlayer = async (token:string, player: IPlayerShort) => {
+    try {
+        const response = await fetch(`${BASE_URL}Team/player`, {
+            method: 'PUT',
+            headers:{
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                id: player.id,
+                firstName: player.firstName,
+                lastName: player.lastName,
+                position: player.position,
+                isInjured: player.isInjured,
+                avatar: player.avatar
             })
         });
         return response;

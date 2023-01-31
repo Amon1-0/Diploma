@@ -181,7 +181,6 @@ namespace backend.Core.Services
             player.Position = playerUpdate.Position;
             player.IsInjured = playerUpdate.IsInjured;
             player.Avatar = playerUpdate.Avatar;
-            player.BirthDate = playerUpdate.BirthDate;
 
             await _context.SaveChangesAsync();
             return HttpStatusCode.OK;
