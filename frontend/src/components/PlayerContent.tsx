@@ -63,9 +63,13 @@ const PlayerContent = (props:{
                     <img  className='player-page-img-position' src={chooseImagePartOfField(PartOfFieldEnum[props.player?.partOfField!])} alt=""/>
                 </div>
             </div>
+            {props.player?.trainings.length !== 0 ?
             <div className={'chart-wrapper'}>
                 <Chart data={props.player?.trainings}/>
-            </div>
+            </div> :
+                <div className={'login-form-text'}>
+                    No trainings
+                </div>}
         </div>
     );
 };
