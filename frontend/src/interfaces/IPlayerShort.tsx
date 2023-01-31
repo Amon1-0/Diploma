@@ -1,3 +1,5 @@
+import {PartOfFieldEnum} from "./PartOfFieldEnum";
+
 export interface IPlayerShort{
     id: number,
     lastName: string,
@@ -5,6 +7,6 @@ export interface IPlayerShort{
     avatar: string,
     position: string,
     isInjured: boolean,
-    partOfField: string,
+    partOfField: PartOfFieldEnum,
     twoWeeksForm: number|null,
 }

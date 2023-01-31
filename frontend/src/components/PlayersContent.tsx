@@ -6,10 +6,12 @@ import {toast} from "react-toastify";
 import {GetPlayers, GetTeam} from "../data/FetchData";
 import {useNavigate} from "react-router-dom";
 import {PageEnum} from "../interfaces/PageEnum";
-import players from "../pages/Players";
 import {IPlayerShort} from "../interfaces/IPlayerShort";
 import PlayerShortCard from "./PlayerShortCard";
 import NoPlayers from "./NoPlayers";
+import AddPlayerButton from "./AddPlayerButton";
+import SortPlayersButton from "./SortPlayersButton";
+import {PartOfFieldEnum} from "../interfaces/PartOfFieldEnum";
 
 const PlayersContent = (props:{
     team: ITeam | undefined,
@@ -18,6 +20,10 @@ const PlayersContent = (props:{
     setIsAddTeamModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
     players: IPlayerShort[],
     setPlayers: React.Dispatch<React.SetStateAction<IPlayerShort[]>>,
+    togglePlayers: boolean,
+    setTogglePlayers: React.Dispatch<React.SetStateAction<boolean>>,
+    isSortByScore: boolean,
+    setIsSortByScore: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
 
     const nav = useNavigate();
@@ -66,7 +72,18 @@ const PlayersContent = (props:{
                     return
                 }
                 else{
-                    const data = await response.json();
+                    let data = await response.json();
+                    data = data.sort((a: IPlayerShort, b: IPlayerShort) => {
+                        if (a.twoWeeksForm === null || b.twoWeeksForm === null)
+                            return 0;
+                        else if (a.twoWeeksForm < b.twoWeeksForm) {
+                            return 1;
+                        }
+                        else if (a.twoWeeksForm < b.twoWeeksForm) {
+                            return -1;
+                        }
+                        return 0;
+                    })
                     props.setPlayers(data);
                 }
 
@@ -79,7 +96,7 @@ const PlayersContent = (props:{
 
         getTeam();
         getPlayers();
-    }, [])
+    }, [props.togglePlayers])
 
     return (
         <div>
@@ -90,13 +107,62 @@ const PlayersContent = (props:{
                     :
                 <div>
                     {props.players.length === 0 ? <NoPlayers/> :
-                        <div>
+                        props.isSortByScore ?
+                        <div className='players-cards-wrapper'>
+                            <div className='players-text'>
+                                Players
+                            </div>
+                            <div className='players-buttons-wrapper'>
+                                <AddPlayerButton/>
+                                <SortPlayersButton setIsSortByScore={props.setIsSortByScore} isSortByScore={props.isSortByScore}/>
+                            </div>
                             {props.players.map((player, index) => {
                                 return (
                                     <PlayerShortCard player={player} key={index}/>
                                 )
                             })}
-                        </div>
+                        </div> :
+                            <div className='players-cards-wrapper'>
+                                <div className='players-text'>
+                                    Players
+                                </div>
+                                <div className='players-buttons-wrapper'>
+                                    <AddPlayerButton/>
+                                    <SortPlayersButton setIsSortByScore={props.setIsSortByScore} isSortByScore={props.isSortByScore}/>
+                                </div>
+                                <div className='players-text'>
+                                    Goalkeepers
+                                </div>
+                                {props.players.filter(player => player.partOfField === PartOfFieldEnum.Goalkeeper).map((player, index) => {
+                                    return (
+                                        <PlayerShortCard player={player} key={index}/>
+                                    )
+                                })}
+                                <div className='players-text'>
+                                    Defenders
+                                </div>
+                                {props.players.filter(player => player.partOfField === PartOfFieldEnum.Defender).map((player, index) => {
+                                    return (
+                                        <PlayerShortCard player={player} key={index}/>
+                                    )
+                                })}
+                                <div className='players-text'>
+                                    Midfielders
+                                </div>
+                                {props.players.filter(player => player.partOfField === PartOfFieldEnum.Midfielder).map((player, index) => {
+                                    return (
+                                        <PlayerShortCard player={player} key={index}/>
+                                    )
+                                })}
+                                <div className='players-text'>
+                                    Forwards
+                                </div>
+                                {props.players.filter(player => player.partOfField === PartOfFieldEnum.Forward).map((player, index) => {
+                                    return (
+                                        <PlayerShortCard player={player} key={index}/>
+                                    )
+                                })}
+                            </div>
                     }
 
                 </div>
