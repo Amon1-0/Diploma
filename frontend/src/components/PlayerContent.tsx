@@ -4,9 +4,16 @@ import {PartOfFieldEnum} from "../interfaces/PartOfFieldEnum";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {solid} from "@fortawesome/fontawesome-svg-core/import.macro";
 import Chart from "./Chart";
+import {confirmAlert} from "react-confirm-alert";
+import {useNavigate} from "react-router-dom";
+import {UpdatePlayer} from "../data/FetchData";
+import {toast} from "react-toastify";
+import {IPlayerShort} from "../interfaces/IPlayerShort";
 
 const PlayerContent = (props:{
-    player: IPlayer|undefined
+    player: IPlayer|undefined,
+    togglePlayer: boolean,
+    setTogglePlayer: React.Dispatch<React.SetStateAction<boolean>>,
 }) => {
 
     const chooseImagePartOfField = (partOfField: string) => {
@@ -31,9 +38,50 @@ const PlayerContent = (props:{
         }
     }
 
+    const handleRecoverOrInjury = (e: React.MouseEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        confirmAlert({
+            message: 'Are you sure ?',
+            title: `Confirm To ${props.player!.isInjured ? 'Recover' : 'Injury'} Player`,
+            buttons:[
+                {
+                    label: 'Yes',
+                    onClick: handlePlayerRecoversOrInjury
+
+                },
+                {
+                    label: 'No',
+                }
+            ]
+        })
+    }
+    const nav = useNavigate();
+    const handlePlayerRecoversOrInjury = async () => {
+        const token = localStorage.getItem('access_token');
+
+        if(token !== null && props.player !== undefined) {
+            const response = await UpdatePlayer(token, {...props.player, isInjured: !props.player.isInjured} as unknown as IPlayerShort)
+            if(response.status === 200){
+                const notify = () => toast.success(`Player is ${props.player!.isInjured ? 'Recovered' : 'Injured'}`);
+                notify();
+                props.setTogglePlayer(!props.togglePlayer)
+            }
+            else{
+                if (response.status === 401) {
+                    setTimeout(() => nav('/'), 2000);
+                    const notify = () => toast.error('Your session has expired. Please log in again.');
+                    notify();
+                    return
+                }
+                const notify = () => toast.error('An error occurred. Please try again later.');
+                notify();
+            }
+        }
+    }
+
     return (
         <div>
-            <div className='player-page-wrapper'>
+            <div className={`player-page-wrapper ${props.player?.isInjured ? 'player-injured' :'player-ok'}`}>
                 <div className='player-page-img-wrapper'>
                     <img className='player-page-img' src={props.player?.avatar} alt=""/>
                 </div>
@@ -49,18 +97,26 @@ const PlayerContent = (props:{
                     </div>
                 </div>
                 <div>
-                    {props.player?.isInjured &&
-                        <div className='player-injury'>
-                                <FontAwesomeIcon icon={solid('user-injured')}/>
-                        </div>}
+                    {!props.player?.isInjured ?
+                        <div onClick={handleRecoverOrInjury} className='player-injury'>
+                            <FontAwesomeIcon icon={solid('user-injured')}/>
+                        </div>
+                    :
+                        <div onClick={handleRecoverOrInjury} className='player-recover'>
+                            <FontAwesomeIcon icon={solid('briefcase-medical')}/>
+                        </div>
+                    }
                     <div className='player-edit'>
                         <FontAwesomeIcon icon={solid('edit')}/>
+                    </div>
+                    <div className='player-delete'>
+                        <FontAwesomeIcon icon={solid('bucket')}/>
                     </div>
                     <div style={{display:'flex', justifyContent:'center', marginBottom: '20px'}} className='player-name'>
                         {props.player?.position}
                     </div>
 
-                    <img  className='player-page-img-position' src={chooseImagePartOfField(PartOfFieldEnum[props.player?.partOfField!])} alt=""/>
+                    <img className='player-page-img-position' src={chooseImagePartOfField(PartOfFieldEnum[props.player?.partOfField!])} alt=""/>
                 </div>
             </div>
             {props.player?.trainings.length !== 0 ?

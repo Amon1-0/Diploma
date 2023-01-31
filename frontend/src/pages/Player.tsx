@@ -42,7 +42,7 @@ const Player = () => {
     return (
         <div>
             <NavMenu/>
-            <PlayerContent player={player}/>
+            <PlayerContent setTogglePlayer={setTogglePlayer} togglePlayer={togglePlayer} player={player}/>
             <ToastContainer
                 position="top-right"
                 autoClose={2000}

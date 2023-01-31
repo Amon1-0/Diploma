@@ -932,7 +932,6 @@ body::-webkit-scrollbar {
   margin: 50px 100px;
   padding: 50px 70px;
   border-radius: 20px;
-  background: #abf3ab;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .player-page-img-wrapper{
@@ -984,4 +983,27 @@ body::-webkit-scrollbar {
   padding: 100px;
   background: #abf3ab;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.player-delete{
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: -40px;
+  right: -40px;
+  padding: 30px;
+  border-radius: 50%;
+  border: 1px solid #080000;
+  font-size: 28px;
+  background: rgb(0, 0, 0);
+  color: white;
+}
+.player-delete:hover{
+  cursor: pointer;
+  background: #bc0220;
+  color: #f3f3f3;
+  transition: 0.5s all ease;
 }
