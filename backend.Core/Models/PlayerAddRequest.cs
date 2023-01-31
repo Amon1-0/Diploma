@@ -14,6 +14,5 @@ namespace backend.Core.Models
         public bool IsInjured { get; set; }
         public string Avatar { get; set; }
         public DateTime BirthDate { get; set; }
-        public int TeamId { get; set; }
     }
 }
