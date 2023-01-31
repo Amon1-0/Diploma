@@ -23,7 +23,8 @@ const PlayersContent = (props:{
     togglePlayers: boolean,
     setTogglePlayers: React.Dispatch<React.SetStateAction<boolean>>,
     isSortByScore: boolean,
-    setIsSortByScore: React.Dispatch<React.SetStateAction<boolean>>
+    setIsSortByScore: React.Dispatch<React.SetStateAction<boolean>>,
+    setIsAddPlayerModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
 }) => {
 
     const nav = useNavigate();
@@ -113,7 +114,7 @@ const PlayersContent = (props:{
                                 Players
                             </div>
                             <div className='players-buttons-wrapper'>
-                                <AddPlayerButton/>
+                                <AddPlayerButton setIsAddPlayerModalOpen={props.setIsAddPlayerModalOpen}/>
                                 <SortPlayersButton setIsSortByScore={props.setIsSortByScore} isSortByScore={props.isSortByScore}/>
                             </div>
                             {props.players.map((player, index) => {
@@ -127,7 +128,7 @@ const PlayersContent = (props:{
                                     Players
                                 </div>
                                 <div className='players-buttons-wrapper'>
-                                    <AddPlayerButton/>
+                                    <AddPlayerButton setIsAddPlayerModalOpen={props.setIsAddPlayerModalOpen}/>
                                     <SortPlayersButton setIsSortByScore={props.setIsSortByScore} isSortByScore={props.isSortByScore}/>
                                 </div>
                                 <div className='players-text'>

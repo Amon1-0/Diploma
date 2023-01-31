@@ -6,6 +6,7 @@ import {ITeam} from "../interfaces/ITeam";
 import PlayersContent from "../components/PlayersContent";
 import {ToastContainer} from "react-toastify";
 import {IPlayerShort} from "../interfaces/IPlayerShort";
+import AddPlayerModal from "../components/AddPlayerModal";
 
 const Players = () => {
 
@@ -14,10 +15,13 @@ const Players = () => {
     const [players, setPlayers] = React.useState<IPlayerShort[]>([]);
     const [togglePlayers, setTogglePlayers] = React.useState(false);
     const [isSortByScore, setIsSortByScore] = React.useState(true);
+    const [isAddPlayerModalOpen, setIsAddPlayerModalOpen] = React.useState(false);
     return (
         <div>
             <NavMenu/>
-            <PlayersContent isSortByScore={isSortByScore} setIsSortByScore={setIsSortByScore} setTogglePlayers={setTogglePlayers} togglePlayers={togglePlayers} setPlayers={setPlayers} players={players} team={team} setTeam={setTeam} isAddTeamModalOpen={isAddTeamModalOpen} setIsAddTeamModalOpen={setIsAddTeamModalOpen}/>
+            <PlayersContent setIsAddPlayerModalOpen={setIsAddPlayerModalOpen} isSortByScore={isSortByScore} setIsSortByScore={setIsSortByScore} setTogglePlayers={setTogglePlayers} togglePlayers={togglePlayers} setPlayers={setPlayers} players={players} team={team} setTeam={setTeam} isAddTeamModalOpen={isAddTeamModalOpen} setIsAddTeamModalOpen={setIsAddTeamModalOpen}/>
+            {isAddPlayerModalOpen &&
+                <AddPlayerModal setIsAddPlayerModalOpen={setIsAddPlayerModalOpen} togglePlayers={togglePlayers} setTogglePlayers={setTogglePlayers}/>}
             <ToastContainer
                 className={`toast-container`}
                 position="top-right"
