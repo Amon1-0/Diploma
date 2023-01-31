@@ -98,7 +98,7 @@ const PlayerShortCard = (props:{
                     {props.player.position}
                 </div>
                 <div className={`player-grade ${getGradeStyle(props.player.twoWeeksForm)}`}>
-                    {props.player.twoWeeksForm ? props.player.twoWeeksForm : 'N/A'}
+                    {props.player.twoWeeksForm ? props.player.twoWeeksForm.toFixed(2) : 'N/A'}
                 </div>
                 <div onClick={(e) => {
                     e.stopPropagation()
