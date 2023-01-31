@@ -26,7 +26,11 @@ const LoginForm = () => {
     const loginUser = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const res = await Login({login: login, password: password});
-        if (res instanceof Error){
+        if (res.status === 404) {
+            const notify = () => toast.error('Wrong login or password');
+            notify();
+        }
+        else if (res instanceof Error){
             const notify = () => toast.error("Server error. Try again later.");
             notify();
         }
