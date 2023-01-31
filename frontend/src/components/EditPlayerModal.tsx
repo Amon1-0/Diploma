@@ -18,7 +18,7 @@ const EditPlayerModal = (props:{
     return (
         <div onClick={(e) => closeModal(e)} className={'modal-add-team-wrapper'}>
             <div onClick={(e) => e.stopPropagation()} className="modal-add-team-content-with-panel">
-                <EditPlayerModalTopPanel player={props.player} togglePlayer={props.togglePlayer} setTogglePlayer={props.setTogglePlayer} setIsEditPlayerModalOpen={props.setIsEditPlayerModalOpen}/>
+                <EditPlayerModalTopPanel player={playerEdit} togglePlayer={props.togglePlayer} setTogglePlayer={props.setTogglePlayer} setIsEditPlayerModalOpen={props.setIsEditPlayerModalOpen}/>
                 <EditPlayerModalContent setPlayerEdit={setPlayerEdit} playerEdit={playerEdit} togglePlayer={props.togglePlayer} setTogglePlayer={props.setTogglePlayer}/>
             </div>
         </div>
