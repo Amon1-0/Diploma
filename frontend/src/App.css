@@ -971,3 +971,15 @@ body::-webkit-scrollbar {
   color: #080000;
   transition: 0.5s all ease;
 }
+.chart-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+.chart{
+  border-radius: 20px;
+  padding: 100px;
+  background: #abf3ab;
+
+}

@@ -3,6 +3,7 @@ import {IPlayer} from "../interfaces/IPlayer";
 import {PartOfFieldEnum} from "../interfaces/PartOfFieldEnum";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {solid} from "@fortawesome/fontawesome-svg-core/import.macro";
+import Chart from "./Chart";
 
 const PlayerContent = (props:{
     player: IPlayer|undefined
@@ -62,8 +63,8 @@ const PlayerContent = (props:{
                     <img  className='player-page-img-position' src={chooseImagePartOfField(PartOfFieldEnum[props.player?.partOfField!])} alt=""/>
                 </div>
             </div>
-            <div>
-                Chart
+            <div className={'chart-wrapper'}>
+                <Chart data={props.player?.trainings}/>
             </div>
         </div>
     );
