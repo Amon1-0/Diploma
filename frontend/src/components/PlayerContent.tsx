@@ -14,6 +14,7 @@ const PlayerContent = (props:{
     player: IPlayer|undefined,
     togglePlayer: boolean,
     setTogglePlayer: React.Dispatch<React.SetStateAction<boolean>>,
+    setIsEditPlayerModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
 }) => {
 
     const chooseImagePartOfField = (partOfField: string) => {
@@ -147,7 +148,7 @@ const PlayerContent = (props:{
                             <FontAwesomeIcon icon={solid('briefcase-medical')}/>
                         </div>
                     }
-                    <div className='player-edit'>
+                    <div onClick={() => props.setIsEditPlayerModalOpen(true)} className='player-edit'>
                         <FontAwesomeIcon icon={solid('edit')}/>
                     </div>
                     <div onClick={handleDeletePlayer} className='player-delete'>

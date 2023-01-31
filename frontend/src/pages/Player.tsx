@@ -6,12 +6,13 @@ import {useNavigate} from "react-router-dom";
 import {GetPlayer} from "../data/FetchData";
 import PlayerContent from "../components/PlayerContent";
 import NavMenu from "../components/NavMenu";
+import EditPlayerModal from "../components/EditPlayerModal";
 
 const Player = () => {
 
     const [player, setPlayer] = useState<IPlayer>();
     const [togglePlayer, setTogglePlayer] = useState<boolean>(false);
-
+    const [isEditPlayerModalOpen, setIsEditPlayerModalOpen] = useState<boolean>(false);
     const {id} = useParams();
 
     const nav = useNavigate();
@@ -42,7 +43,9 @@ const Player = () => {
     return (
         <div>
             <NavMenu/>
-            <PlayerContent setTogglePlayer={setTogglePlayer} togglePlayer={togglePlayer} player={player}/>
+            <PlayerContent setTogglePlayer={setTogglePlayer} togglePlayer={togglePlayer} player={player} setIsEditPlayerModalOpen={setIsEditPlayerModalOpen}/>
+            {isEditPlayerModalOpen &&
+                <EditPlayerModal togglePlayer={togglePlayer} setTogglePlayer={setTogglePlayer} player={player} setIsEditPlayerModalOpen={setIsEditPlayerModalOpen}/>}
             <ToastContainer
                 position="top-right"
                 autoClose={2000}
