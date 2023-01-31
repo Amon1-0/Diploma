@@ -19,6 +19,9 @@ const Chart = (props:{
 
     return (
         <div className='chart'>
+            <div className='players-text'>
+                Trainings info
+            </div>
             <LineChart
                 width={800}
                 height={400}

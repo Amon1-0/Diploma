@@ -732,6 +732,7 @@ nav a:hover {
   margin-bottom: 30px;
   border-radius: 50px;
   position: relative;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .player-injured{
   background: #f72b4e;
@@ -932,6 +933,7 @@ body::-webkit-scrollbar {
   padding: 50px 70px;
   border-radius: 20px;
   background: #abf3ab;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .player-page-img-wrapper{
   display: flex;
@@ -981,5 +983,5 @@ body::-webkit-scrollbar {
   border-radius: 20px;
   padding: 100px;
   background: #abf3ab;
-
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
