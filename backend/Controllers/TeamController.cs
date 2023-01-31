@@ -85,10 +85,10 @@ namespace backend.Controllers
 
         [Authorize]
         [HttpDelete("player")]
-        public async Task<IActionResult> DeletePlayerFromTeam(int playerId)
+        public async Task<IActionResult> DeletePlayerFromTeam(PlayerDeleteRequest playerDeleteRequest)
         {
             var userFromJwt = GetCurrentUser();
-            var codeResult = await _teamService.RemovePlayerFromTeam(userFromJwt.Id, playerId);
+            var codeResult = await _teamService.RemovePlayerFromTeam(userFromJwt.Id, playerDeleteRequest.PlayerId);
             if (codeResult == HttpStatusCode.NotFound)
                 return NotFound();
 

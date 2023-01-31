@@ -6,7 +6,7 @@ import {solid} from "@fortawesome/fontawesome-svg-core/import.macro";
 import Chart from "./Chart";
 import {confirmAlert} from "react-confirm-alert";
 import {useNavigate} from "react-router-dom";
-import {UpdatePlayer} from "../data/FetchData";
+import {DeletePlayer, UpdatePlayer} from "../data/FetchData";
 import {toast} from "react-toastify";
 import {IPlayerShort} from "../interfaces/IPlayerShort";
 
@@ -79,6 +79,47 @@ const PlayerContent = (props:{
         }
     }
 
+    const handlePlayerDelete = async () => {
+        const token = localStorage.getItem('access_token');
+
+        if(token !== null && props.player !== undefined) {
+            const response = await DeletePlayer(token, props.player.id)
+            if(response.status === 200){
+                const notify = () => toast.success(`Player is Deleted`);
+                notify();
+                setTimeout(() => nav('/players'), 2000);
+            }
+            else{
+                if (response.status === 401) {
+                    setTimeout(() => nav('/'), 2000);
+                    const notify = () => toast.error('Your session has expired. Please log in again.');
+                    notify();
+                    return
+                }
+                const notify = () => toast.error('An error occurred. Please try again later.');
+                notify();
+            }
+        }
+    }
+
+    const handleDeletePlayer = (e: React.MouseEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        confirmAlert({
+            message: 'Are you sure ?',
+            title: 'Confirm To Delete Player',
+            buttons:[
+                {
+                    label: 'Yes',
+                    onClick: handlePlayerDelete
+
+                },
+                {
+                    label: 'No',
+                }
+            ]
+        })
+    }
+
     return (
         <div>
             <div className={`player-page-wrapper ${props.player?.isInjured ? 'player-injured' :'player-ok'}`}>
@@ -109,7 +150,7 @@ const PlayerContent = (props:{
                     <div className='player-edit'>
                         <FontAwesomeIcon icon={solid('edit')}/>
                     </div>
-                    <div className='player-delete'>
+                    <div onClick={handleDeletePlayer} className='player-delete'>
                         <FontAwesomeIcon icon={solid('bucket')}/>
                     </div>
                     <div style={{display:'flex', justifyContent:'center', marginBottom: '20px'}} className='player-name'>
