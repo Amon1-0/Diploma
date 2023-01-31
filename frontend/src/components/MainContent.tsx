@@ -20,6 +20,7 @@ const MainContent = (props:{
     setToggleTeamChange: React.Dispatch<React.SetStateAction<boolean>>,
     isEditModalOpen: boolean,
     setIsEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
+    setIsOpenAddTrainingModal: React.Dispatch<React.SetStateAction<boolean>>,
 }) => {
 
     const nav = useNavigate();
@@ -103,39 +104,49 @@ const MainContent = (props:{
                     <NoTeam page={PageEnum.Team} team={props.team} setTeam={props.setTeam} isAddTeamModalOpen={props.isAddTeamModalOpen} setIsAddTeamModalOpen={props.setIsAddTeamModalOpen}/>
                     :
 
-            <div className='team-wrapper'>
-                <div className='your-team'>
-                    <div onClick={() => props.setIsEditModalOpen(true)} className='flex-button yellow'>
-                        <FontAwesomeIcon icon={solid('edit')} size={'2x'}/>
-                        <div>Edit</div>
-                    </div>
-                    <div>
-                        Your Team
-                    </div>
-                    <div onClick={handleDeleteTeam} className='flex-button red'>
-                        <FontAwesomeIcon icon={solid('bucket')} size={'2x'}/>
-                        <div>Delete</div>
+            <div>
+                <div onClick={() => props.setIsOpenAddTrainingModal(true)} style={{display:'flex', justifyContent:'center'}}>
+                    <div style={{marginBottom:0}} className={'add-player-button'}>
+                        <FontAwesomeIcon icon={solid('dumbbell')} className="text-4xl text-gray-500"/>
+                        Add Training
                     </div>
                 </div>
 
-                <div className='team-info-wrapper'>
-
-                    <div className='team-logo-wrapper'>
-                        <img className='team-logo' src={props.team?.image} alt=""/>
+                <div className='team-wrapper'>
+                    <div className='your-team'>
+                        <div onClick={() => props.setIsEditModalOpen(true)} className='flex-button yellow'>
+                            <FontAwesomeIcon icon={solid('edit')} size={'2x'}/>
+                            <div>Edit</div>
+                        </div>
+                        <div>
+                            Your Team
+                        </div>
+                        <div onClick={handleDeleteTeam} className='flex-button red'>
+                            <FontAwesomeIcon icon={solid('bucket')} size={'2x'}/>
+                            <div>Delete</div>
+                        </div>
                     </div>
 
-                    <div>
-                        <div className='team-name'>
-                            {props.team?.name}
+                    <div className='team-info-wrapper'>
+
+                        <div className='team-logo-wrapper'>
+                            <img className='team-logo' src={props.team?.image} alt=""/>
                         </div>
 
-                        <div className='team-description'>
-                            {props.team?.description}
+                        <div>
+                            <div className='team-name'>
+                                {props.team?.name}
+                            </div>
+
+                            <div className='team-description'>
+                                {props.team?.description}
+                            </div>
                         </div>
+
                     </div>
-
                 </div>
-            </div>}
+            </div>
+            }
         </div>
     );
 };
