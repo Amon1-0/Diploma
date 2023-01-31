@@ -14,7 +14,7 @@ namespace backend.Core.Models
         public string Position { get; set; }
         public bool IsInjured { get; set; }
         public string Avatar { get; set; }
-
+        public DateTime BirthDate { get; set; }
         public FieldPart PartOfField { get; set; }
         public List<TrainingData> Trainings { get; set; }
     }
