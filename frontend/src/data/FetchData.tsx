@@ -276,14 +276,22 @@ export const DeletePlayer = async (token:string, playerId: number) => {
 
 export const AddTraining = async (token:string, playersForTraining:IPlayerForTraining[]) => {
     try {
-        const response = await fetch(`${BASE_URL}Training`, {
+        const response = await fetch(`${BASE_URL}api/Training`, {
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({
-
+                playersForTraining: playersForTraining.map((player) => {
+                    return {
+                        id: player.id,
+                        isAbsent: player.isAbsent,
+                        grade: player.grade
+                    }
+                }),
+                trainingDate: new Date().toISOString(),
+                description: "no description"
             })
         });
         return response;

@@ -1,6 +1,7 @@
 ﻿using backend.Core.Interfaces;
 using backend.Core.Models;
 using backend.Infrastructure.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -20,6 +21,7 @@ namespace backend.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateTraining(TrainingCreateRequest training)
         {
             var userFromJwt = GetCurrentUser();
