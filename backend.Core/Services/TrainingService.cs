@@ -23,15 +23,19 @@ namespace backend.Core.Services
         {
             foreach (var playerTraining in training.PlayersForTraining)
             {
-                var trainingModel = new Training
+                if (!playerTraining.IsAbsent)
                 {
-                    TrainingDate = training.TrainingDate,
-                    IsPlayerAbsent = playerTraining.IsAbsent,
-                    Description = training.Description,
-                    Grade = playerTraining.Grade,
-                    PlayerId = playerTraining.Id,
-                };
-                await _context.Trainings.AddAsync(trainingModel);
+                    var trainingModel = new Training
+                    {
+                        TrainingDate = training.TrainingDate,
+                        IsPlayerAbsent = playerTraining.IsAbsent,
+                        Description = training.Description,
+                        Grade = playerTraining.Grade,
+                        PlayerId = playerTraining.Id,
+                    };
+                    await _context.Trainings.AddAsync(trainingModel);
+                }
+
             }
             _context.SaveChanges();
             return HttpStatusCode.OK;
