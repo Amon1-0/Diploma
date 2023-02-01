@@ -4,6 +4,8 @@ import {IPlayerForTraining} from "../interfaces/IPlayerForTraining";
 import TrainingPlayer from "./TrainingPlayer";
 import {GetPlayers} from "../data/FetchData";
 import {toast} from "react-toastify";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {solid} from "@fortawesome/fontawesome-svg-core/import.macro";
 
 const AddTrainingModal = (props:{
     setIsAddTrainingModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
@@ -26,6 +28,11 @@ const AddTrainingModal = (props:{
          }
          getPlayers()
      },[])
+
+    const handleAddTraining = async () => {
+
+    }
+
     return (
         <div onClick={closeModal} className={'modal-add-training-wrapper'}>
             <div onClick={(e) => e.stopPropagation()} className="modal-add-training-content">
@@ -33,6 +40,12 @@ const AddTrainingModal = (props:{
                 {props.playersForTraining?.map((player, index) => (
                     <TrainingPlayer players={props.playersForTraining} index={index} key={index} player={player} setPlayersForTraining={props.setPlayersForTraining}/>
                 ))}
+                <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+                    <div onClick={handleAddTraining} style={{display:'flex', justifyContent:'center', alignItems:'center', gap:'10px'}} className='add-player-button-2'>
+                        <FontAwesomeIcon icon={solid('plus')}/>
+                        Add
+                    </div>
+                </div>
             </div>
         </div>
     );
