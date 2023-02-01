@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace backend.Core.Models
 {
-    internal class TrainingCreateRequest
+    public class TrainingCreateRequest
     {
+        public DateTime TrainingDate { get; set; }
+        public string Description { get; set; }
+        public List<PlayerForTraining> PlayersForTraining { get; set; }
     }
 }
