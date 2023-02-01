@@ -4,6 +4,7 @@ import {ITeam} from "../interfaces/ITeam";
 import {ICoach} from "../interfaces/ICoach";
 import {IPlayerAdd} from "../interfaces/IPlayerAdd";
 import {IPlayerShort} from "../interfaces/IPlayerShort";
+import {IPlayerForTraining} from "../interfaces/IPlayerForTraining";
 
 const BASE_URL = "https://localhost:7189/";
 
@@ -263,6 +264,26 @@ export const DeletePlayer = async (token:string, playerId: number) => {
             },
             body: JSON.stringify({
                 playerId: playerId
+            })
+        });
+        return response;
+    }
+    catch (error: any) {
+        console.log(error);
+        return error;
+    }
+}
+
+export const AddTraining = async (token:string, playersForTraining:IPlayerForTraining[]) => {
+    try {
+        const response = await fetch(`${BASE_URL}Training`, {
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+
             })
         });
         return response;

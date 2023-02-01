@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import AddTrainingModalTopPanel from "./AddTrainingModalTopPanel";
 import {IPlayerForTraining} from "../interfaces/IPlayerForTraining";
 import TrainingPlayer from "./TrainingPlayer";
-import {GetPlayers} from "../data/FetchData";
+import {AddTraining, GetPlayers} from "../data/FetchData";
 import {toast} from "react-toastify";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {solid} from "@fortawesome/fontawesome-svg-core/import.macro";
@@ -30,7 +30,21 @@ const AddTrainingModal = (props:{
      },[])
 
     const handleAddTraining = async () => {
-
+        const token = localStorage.getItem('access_token')
+        if (token){
+            const response = await AddTraining(token, props.playersForTraining)
+            if (response.status === 200){
+                const notify = () => toast.success("Training added successfully.");
+                notify();
+                setTimeout(() => {
+                    props.setIsAddTrainingModalOpen(false)
+                }, 2000)
+            }
+            else {
+                const notify = () => toast.error("Something went wrong.");
+                notify();
+            }
+        }
     }
 
     return (
