@@ -15,6 +15,7 @@ const AddTrainingModal = (props:{
     const closeModal = (e: React.MouseEvent<HTMLDivElement>) => {
         props.setIsAddTrainingModalOpen(false)
     }
+    const [description, setDescription] = React.useState('')
      useEffect(() => {
          const getPlayers = async () => {
             const token = localStorage.getItem('access_token')
@@ -32,7 +33,7 @@ const AddTrainingModal = (props:{
     const handleAddTraining = async () => {
         const token = localStorage.getItem('access_token')
         if (token){
-            const response = await AddTraining(token, props.playersForTraining)
+            const response = await AddTraining(token, props.playersForTraining, description)
             if (response.status === 200){
                 const notify = () => toast.success("Training added successfully.");
                 notify();
@@ -54,6 +55,14 @@ const AddTrainingModal = (props:{
                 {props.playersForTraining?.map((player, index) => (
                     <TrainingPlayer players={props.playersForTraining} index={index} key={index} player={player} setPlayersForTraining={props.setPlayersForTraining}/>
                 ))}
+                <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+                    <textarea
+                        placeholder="Description"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        className={'training-modal-desc-input'}
+                    />
+                </div>
                 <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
                     <div onClick={handleAddTraining} style={{display:'flex', justifyContent:'center', alignItems:'center', gap:'10px'}} className='add-player-button-2'>
                         <FontAwesomeIcon icon={solid('plus')}/>

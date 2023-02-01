@@ -274,7 +274,7 @@ export const DeletePlayer = async (token:string, playerId: number) => {
     }
 }
 
-export const AddTraining = async (token:string, playersForTraining:IPlayerForTraining[]) => {
+export const AddTraining = async (token:string, playersForTraining:IPlayerForTraining[], description:string) => {
     try {
         const response = await fetch(`${BASE_URL}api/Training`, {
             method: 'POST',
@@ -291,7 +291,7 @@ export const AddTraining = async (token:string, playersForTraining:IPlayerForTra
                     }
                 }),
                 trainingDate: new Date().toISOString(),
-                description: "no description"
+                description: description
             })
         });
         return response;

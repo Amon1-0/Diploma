@@ -1112,3 +1112,14 @@ body::-webkit-scrollbar {
   background: #abf3ab;
   border-bottom: 1px solid var(--text-primary);
 }
+.training-modal-desc-input{
+  width: 85%;
+  height: 100px;
+  padding: 5px 20px;
+  border: 1px solid #080000;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 100;
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 10px;
+}
