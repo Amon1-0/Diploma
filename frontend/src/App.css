@@ -1099,7 +1099,7 @@ body::-webkit-scrollbar {
 }
 .player-absent{
   background: rgba(0, 0, 0, 0.7);
-  color: rgba(0, 0, 0, 0.9);
+  color: rgba(0, 0, 0, 1);
 }
 
 .add-training-modal-top-panel {

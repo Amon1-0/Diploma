@@ -31,7 +31,7 @@ const AddTrainingModal = (props:{
             <div onClick={(e) => e.stopPropagation()} className="modal-add-training-content">
                 <AddTrainingModalTopPanel/>
                 {props.playersForTraining?.map((player, index) => (
-                    <TrainingPlayer key={index} player={player}/>
+                    <TrainingPlayer players={props.playersForTraining} index={index} key={index} player={player} setPlayersForTraining={props.setPlayersForTraining}/>
                 ))}
             </div>
         </div>
