@@ -1028,8 +1028,76 @@ body::-webkit-scrollbar {
   background: var(--background);
   border: 1px solid var(--text-primary);
   border-radius: 20px;
-  background: var(--background-secondary);
+  background: #ffffff;
 }
 .modal-add-training-content::-webkit-scrollbar {
   display: none;
+}
+.training-modal-player-wrapper{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 20px;
+  background: #abf3ab;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #080000;
+}
+.training-modal-player-wrapper:hover{
+  cursor: pointer;
+  background: #bebebe;
+  color: #080000;
+  transition: 0.5s all ease;
+}
+.training-modal-player-image-wrapper{
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+}
+.training-modal-player-image{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 100%;
+  border: 1px solid #080000;
+}
+.player-training-injured{
+  background: #abf3ab;
+}
+.player-training-ok{
+  background: #ea2445;
+  color: white;
+}
+.training-modal-player-data-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+.training-modal-player-data{
+  font-size: 18px;
+  font-weight: 100;
+  font-family: "Montserrat", sans-serif;
+}
+.training-modal-player-actions-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-direction: column;
+}
+.training-modal-player-grade-input{
+  width: 50px;
+  text-align: center;
+  height: 30px;
+  border: 1px solid #080000;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 18px;
+  font-weight: 100;
+  font-family: "Montserrat", sans-serif;
+}
+.player-absent{
+  background: rgba(0, 0, 0, 0.7);
+  color: rgba(0, 0, 0, 0.9);
 }

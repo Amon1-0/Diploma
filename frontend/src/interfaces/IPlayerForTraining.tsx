@@ -4,4 +4,7 @@ export interface IPlayerForTraining{
     lastName: string,
     avatar: string,
     position: string,
+    isInjured: boolean,
+    isAbsent: boolean,
+    grade: number
 }
