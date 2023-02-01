@@ -1037,7 +1037,7 @@ body::-webkit-scrollbar {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: 20px;
+  margin: 10px 20px;
   background: #abf3ab;
   padding: 10px;
   border-radius: 20px;
@@ -1100,4 +1100,15 @@ body::-webkit-scrollbar {
 .player-absent{
   background: rgba(0, 0, 0, 0.7);
   color: rgba(0, 0, 0, 0.9);
+}
+
+.add-training-modal-top-panel {
+  text-align: center;
+  padding: 1rem;
+  color: var(--text-primary);
+  font-weight: 100;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.4rem;
+  background: #abf3ab;
+  border-bottom: 1px solid var(--text-primary);
 }

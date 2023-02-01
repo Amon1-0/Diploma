@@ -2,8 +2,8 @@ import React from 'react';
 
 const AddTrainingModalTopPanel = () => {
     return (
-        <div>
-
+        <div className={'add-training-modal-top-panel'}>
+            Add training
         </div>
     );
 };
