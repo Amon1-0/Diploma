@@ -71,7 +71,7 @@ const RegisterForm = () => {
     }
 
     const submitCheckForDisabled = () => {
-        return user.login.length < 1 || user?.password.length < 1 || user.firstName.length < 1 || user.lastName.length < 1
+        return user.login.length < 1 || user?.password.length < 8 || user.firstName.length < 1 || user.lastName.length < 1
     }
 
 
