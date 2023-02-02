@@ -24,8 +24,9 @@ const TrainingPlayer = (props:{
             return newState
         })
     }
+    console.log(props.player.isInjured, props.player.isAbsent, props.player.lastName)
     return (
-        <div onClick={absentHandler} className={`training-modal-player-wrapper ${props.player.isAbsent? 'player-absent' :props.player.isInjured ? 'player-training-injured' : 'player-training-ok'}`}>
+        <div onClick={absentHandler} className={`training-modal-player-wrapper ${props.player.isAbsent? 'player-absent' :!props.player.isInjured ? 'player-training-injured' : 'player-training-ok'}`}>
             <div className='training-modal-player-data-wrapper'>
                 <div className='training-modal-player-image-wrapper'>
                     <img className='training-modal-player-image' src={props.player.avatar} alt=""/>
