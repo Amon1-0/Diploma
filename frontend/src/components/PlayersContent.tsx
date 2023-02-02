@@ -107,7 +107,7 @@ const PlayersContent = (props:{
                 <NoTeam page={PageEnum.Players} team={props.team} setTeam={props.setTeam} isAddTeamModalOpen={props.isAddTeamModalOpen} setIsAddTeamModalOpen={props.setIsAddTeamModalOpen}/>
                     :
                 <div>
-                    {props.players.length === 0 ? <NoPlayers/> :
+                    {props.players.length === 0 ? <NoPlayers setIsAddPlayerModalOpen={props.setIsAddPlayerModalOpen}/> :
                         props.isSortByScore ?
                         <div className='players-cards-wrapper'>
                             <div className='players-text'>
