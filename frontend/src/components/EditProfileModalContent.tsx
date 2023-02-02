@@ -16,6 +16,8 @@ const EditProfileModalContent = (props:{
     const fileInput = useRef<HTMLInputElement>(null);
     const [preview, setPreview] = useState<string | ArrayBuffer | null>("");
 
+    const [date, setDate] = useState<string | undefined>(props.coachEdit?.birthDate.toString().substring(0,10));
+
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         if (fileInput.current && fileInput.current.files) {
             const file = fileInput.current.files[0];
@@ -62,7 +64,7 @@ const EditProfileModalContent = (props:{
                     <input
                         className={'login-form-input register-input-additional register-birth-date-grid'}
                         type="date"
-                        value={new Date(props.coachEdit?.birthDate!).toISOString().split('T')[0]}
+                        value={props.coachEdit?.birthDate.toString().substring(0,10)}
                         onChange={(e) => props.setCoachEdit({...props.coachEdit, birthDate: e.target.value} as ICoach)}
                     />
 

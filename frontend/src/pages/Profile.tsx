@@ -30,6 +30,7 @@ const Profile = () => {
         getCoach();
     }, [toggleProfile])
 
+    console.log(coach);
     return (
         <div>
             <NavMenu/>
