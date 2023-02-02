@@ -14,6 +14,7 @@ const AddPlayerModalTopPanel = (props:{
     const nav = useNavigate();
 
     const handleAddPlayer = async () => {
+        console.log(props.player);
         const token = localStorage.getItem('access_token')
         if (token !== null) {
             const response = await AddPlayer(token,props.player);

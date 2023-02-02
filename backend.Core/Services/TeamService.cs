@@ -36,6 +36,7 @@ namespace backend.Core.Services
                 Avatar = playerAdd.Avatar,
                 Team = coach.Team,
                 TeamId = coach.Team.Id,
+                BirthDate = playerAdd.BirthDate
             };
 
             await _context.Players.AddAsync(player);
