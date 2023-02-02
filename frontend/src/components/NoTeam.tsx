@@ -13,7 +13,6 @@ const NoTeam = (props: {
     page: PageEnum,
 }) => {
 
-    const nav = useNavigate()
 
     return (
         <div className={'no-team-wrap'}>
