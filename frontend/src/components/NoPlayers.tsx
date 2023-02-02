@@ -1,12 +1,15 @@
-import React from 'react';
+import React, {SetStateAction} from 'react';
 
-const NoPlayers = () => {
+const NoPlayers = (props:{
+    setIsAddPlayerModalOpen: React.Dispatch<SetStateAction<boolean>>
+
+}) => {
     return (
         <div className='no-players-wrapper'>
             <div className='no-players-text'>
                 No Players
             </div>
-            <div className='add-player-button'>
+            <div onClick={() => props.setIsAddPlayerModalOpen(true)} className='add-player-button'>
                 Add Player
             </div>
         </div>
