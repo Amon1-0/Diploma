@@ -40,6 +40,17 @@ const RegisterForm = () => {
         reader.readAsDataURL(file);
     }
 
+    const handleNav = (token: string|null) => {
+        if (token === null){
+            const notify = () => toast.error('Server error. Try again later.');
+            notify();
+            return;
+        }
+
+        localStorage.setItem('access_token', token);
+        nav("/home")
+    }
+
     const handleRegisterSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         console.log(user)
@@ -57,8 +68,7 @@ const RegisterForm = () => {
             notify();
 
             const res = await Login({login: user.login, password: user.password});
-            localStorage.setItem('access_token', res.token);
-            setInterval(() => nav("/home"), 2000)
+            handleNav(res!.token);
         }
         else if(res.status === 400) {
             const notify = () => toast.error("Error. Try again later.");
@@ -71,7 +81,7 @@ const RegisterForm = () => {
     }
 
     const submitCheckForDisabled = () => {
-        return user.login.length < 1 || user?.password.length < 1 || user.firstName.length < 1 || user.lastName.length < 1
+        return user.login.length < 1 || user?.password.length < 8 || user.firstName.length < 1 || user.lastName.length < 1 || user.birthDate.length < 1
     }
 
 

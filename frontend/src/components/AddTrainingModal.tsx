@@ -31,8 +31,16 @@ const AddTrainingModal = (props:{
      },[])
 
     const handleAddTraining = async () => {
+        let areAllGraded = true
+        props.playersForTraining.filter(x => !x.isAbsent).forEach((player) => {
+            if (player.grade === null || player.grade === undefined){
+                console.log("here")
+                areAllGraded = false
+                return
+            }
+        })
         const token = localStorage.getItem('access_token')
-        if (token){
+        if (token && areAllGraded){
             const response = await AddTraining(token, props.playersForTraining, description)
             if (response.status === 200){
                 const notify = () => toast.success("Training added successfully.");
@@ -45,6 +53,10 @@ const AddTrainingModal = (props:{
                 const notify = () => toast.error("Something went wrong.");
                 notify();
             }
+        }
+        else{
+            const notify = () => toast.error('Не все игроки оценены')
+            notify()
         }
     }
 

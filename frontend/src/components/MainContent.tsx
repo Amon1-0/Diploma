@@ -105,8 +105,8 @@ const MainContent = (props:{
                     :
 
             <div>
-                <div onClick={() => props.setIsOpenAddTrainingModal(true)} style={{display:'flex', justifyContent:'center'}}>
-                    <div style={{marginBottom:0}} className={'add-player-button'}>
+                <div style={{display:'flex', justifyContent:'center'}}>
+                    <div onClick={() => props.setIsOpenAddTrainingModal(true)} style={{marginBottom:0}} className={'add-player-button'}>
                         <FontAwesomeIcon icon={solid('dumbbell')} className="text-4xl text-gray-500"/>
                         Add Training
                     </div>

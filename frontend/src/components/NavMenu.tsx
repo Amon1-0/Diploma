@@ -1,10 +1,11 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import logo from '../assets/images/logo.jpg';
 const NavMenu = () => {
+    const nav = useNavigate()
     return (
         <nav>
-            <div className="logo">
+            <div onClick={() => nav('/home')} style={{cursor:'pointer'}} className="logo">
                 <img src={logo} alt="Logo"/>
             </div>
             <ul>

@@ -2,6 +2,7 @@ import React, {SetStateAction, useState} from 'react';
 import {IPlayerForTraining} from "../interfaces/IPlayerForTraining";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {solid} from "@fortawesome/fontawesome-svg-core/import.macro";
+import {toast} from "react-toastify";
 
 const TrainingPlayer = (props:{
     player: IPlayerForTraining,
@@ -18,6 +19,11 @@ const TrainingPlayer = (props:{
     }
 
     const handleChangeGrade = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (+e.target.value < 0 || +e.target.value > 10){
+            const notify = () => toast.error("Оценка должна быть от 0 до 10");
+            notify();
+            return
+        }
         props.setPlayersForTraining(prevState => {
             const newState = [...prevState]
             newState[props.index].grade = +e.target.value
@@ -25,7 +31,7 @@ const TrainingPlayer = (props:{
         })
     }
     return (
-        <div onClick={absentHandler} className={`training-modal-player-wrapper ${props.player.isAbsent? 'player-absent' :props.player.isInjured ? 'player-training-injured' : 'player-training-ok'}`}>
+        <div onClick={absentHandler} className={`training-modal-player-wrapper ${props.player.isAbsent? 'player-absent' :!props.player.isInjured ? 'player-training-injured' : 'player-training-ok'}`}>
             <div className='training-modal-player-data-wrapper'>
                 <div className='training-modal-player-image-wrapper'>
                     <img className='training-modal-player-image' src={props.player.avatar} alt=""/>
